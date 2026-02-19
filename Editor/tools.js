@@ -1,5 +1,4 @@
-import { labelRow, labelCol ,labelHeight,labelGenerateMap} from "./labelTextIta.js";
-
+import { labelRow, labelCol ,labelHeight,labelGenerateMap,labelNameMap,labelDownloadMap} from "./labelTextIta.js";
 export const labelinputRow = document.createElement('label');
 labelinputRow.htmlFor = "input-row-map";
 labelinputRow.innerText = labelRow;
@@ -36,8 +35,26 @@ inputHeight.min = 0;
 inputHeight.value = 0;
 inputHeight.defaultValue = 0;
 
+export const labelinputNameMap = document.createElement('label');
+labelinputNameMap.htmlFor = "input-NameMap-map";
+labelinputNameMap.innerText = labelNameMap;
+
+export const inputNameMap = document.createElement('input');
+inputNameMap.classList.add("input-NameMap");
+inputNameMap.type = "text";
+inputNameMap.id = "input-NameMap-map";
+inputNameMap.min = 1;
+inputNameMap.max = 255;
+inputNameMap.defaultValue = 'NameMap';
+
 export const bottonCreateMap = document.createElement('button');
 bottonCreateMap.classList.add("botton-create-map");
 bottonCreateMap.id = "botton-create-map";
 bottonCreateMap.type = "button";
 bottonCreateMap.innerText = labelGenerateMap;
+
+export const bottonDownloadJsonMap = document.createElement('button');
+bottonDownloadJsonMap.classList.add("botton-create-map");
+bottonDownloadJsonMap.id = "botton-download-json-map";
+bottonDownloadJsonMap.type = "button";
+bottonDownloadJsonMap.innerText = labelDownloadMap;
