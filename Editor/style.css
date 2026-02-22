@@ -1,6 +1,34 @@
+:root {
+    --widthCube: 50px;
+    --heightCube: 50px;
+}
+
 .d-flex{
     display: flex;
 }
 .flex-column{
     flex-direction: column;
+}
+.cube{
+    border: 1px solid black;
+    background-color: white;
+    width: var(--widthCube);
+    height: var(--heightCube);
+}
+
+/* Map container: use available width so JS can compute cube size
+   and render a precise grid of N columns */
+#map{
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    display: grid;
+    grid-auto-rows: var(--heightCube);
+    gap: 0;
+}
+
+.cube{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
 }

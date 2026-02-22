@@ -1,102 +1,31 @@
-import { 
-    labelinputRow, 
-    inputRow, 
-    labelinputCol, 
-    inputCol ,
-    labelinputHeight,
-    inputHeight,
-    labelinputNameMap,
-    inputNameMap,
-    bottonCreateMap,
-    bottonDownloadJsonMap} 
-from './tools.js';
-export let globalJSONMap = [];
-let globalNameMap = '';
-let globalX = 0;
-let globalY = 0;
-let globalZ = 0;    
-/**
- * 
- * @param {HTMLElement} tools 
- */
-export function renderPage (tools){
-    console.log("Start render Page");
+import  { 
+            getGlobalJSONMap,
+            getglobalX,
+            getglobalY,
+            getglobalZ,
+            getglobalNameMap,
+            
+            setglobalNameMap,
+            setglobalY,
+            setglobalZ,
+            setGlobalJSONMap,
+            getValueInput,
+            
+        }from './globalVariables.js';    
 
-    tools.appendChild(labelinputRow);
-    tools.appendChild(inputRow);
-    tools.appendChild(labelinputCol);
-    tools.appendChild(inputCol);   
-    tools.appendChild(labelinputHeight);
-    tools.appendChild(inputHeight); 
-    tools.appendChild(labelinputNameMap);
-    tools.appendChild(inputNameMap);
-    bottonCreateMap.onclick = function() {renderMap(map,tools)};
-    tools.appendChild(bottonCreateMap);
-
-    console.log("Finish render Page");
-
-}
-/**
- * 
- * @param {HTMLElement} map 
- */
-export function renderMap(map,tools){
-    console.log("Generazione mappa inizio");
-
-    getValueInput(globalX,globalY,globalZ,globalNameMap);
-    generateMap(globalX,globalY,globalZ,globalNameMap,map);
-    globalJSONMap =genetateJSONMap(globalX,globalY,globalZ,globalNameMap);
-    tools.appendChild(bottonDownloadJsonMap);
-    bottonDownloadJsonMap.onclick = function() {downloadJSONMap(globalJSONMap)};
-    tools.removeChild(bottonCreateMap);
-    console.log("Generazione mappa Fine");
-
-}
-/**
- * 
- * @param {Number} x 
- * @param {Number} y 
- * @param {Number} z 
- * @param {String} nameMap 
- */
-function getValueInput(x,y,z,nameMap){
-    x = inputRow.value;
-    y = inputCol.value;
-    z = inputHeight.value;
-    nameMap = inputNameMap.value;
-    globalNameMap = nameMap;
-    globalX = x;
-    globalY = y;
-    globalZ = z;
-    console.log(globalX,globalY,globalZ,globalNameMap);
-    
-}
-/**
- * 
- * @param {Number} x 
- * @param {Number} y 
- * @param {Number} z 
- * @param {String} nameMap 
- * @returns 
- */
-function createCube(x,y,z,nameMap){ 
+function createCube(){ 
     const divCube = document.createElement('div');
-    divCube.id = `x${x}y${y}z${z}-L${z}-${nameMap}`;
-    divCube.min = 0;
-    divCube.value = 0;
+    divCube.id = `x${getglobalX()}y${getglobalY()}z${getglobalZ()}-L${getglobalZ()}-${getglobalNameMap()}`;
     divCube.defaultValue = 0;
     divCube.classList.add("cube");
     return divCube;
 }
-/**
- * 
- * @param {Number} x 
- * @param {Number} y 
- * @param {Number} z 
- * @param {String} nameMap 
- */
-function generateMap(x,y,z,nameMap,map){ 
+
+export function generateMap(map){ 
     map.innerHTML='';
+    let y = getglobalY();
+    let x = getglobalX();
+    let nameMap = getglobalNameMap();
     for(let j = 0; j < y; j++){
         for(let k = 0; k < x; k++){
             let cube = createCube(k,j,0,nameMap);
@@ -112,9 +41,13 @@ function generateMap(x,y,z,nameMap,map){
  * @param {String} nameMap 
  * @returns 
  */
-function genetateJSONMap(x,y,z,nameMap) {
+export function genetateJSONMap() {
     
     let JSONMap = [];
+    let x = getglobalX();
+    let y = getglobalY();
+    let z = getglobalZ();
+    let nameMap = getglobalNameMap();
     for (let i = 0; i < z; i++) {
         let layer = [];
         for (let j = 0; j < y; j++) {
@@ -141,6 +74,7 @@ function genetateJSONMap(x,y,z,nameMap) {
 }
 
 export function downloadJSONMap(globalJSONMap) {
+    let globalNameMap = getglobalNameMap();
     console.log("Download JSON Map");
     const jsonStr = JSON.stringify(globalJSONMap);
     const blob = new Blob([jsonStr], { type: 'application/json' });
