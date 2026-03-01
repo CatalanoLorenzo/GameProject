@@ -9,7 +9,7 @@ let globalNameMap = '';
 let globalX = 0;
 let globalY = 0;
 let globalZ = 0;    
-
+let isGeneratingMap = false; 
 
 
 export function getGlobalJSONMap(){
@@ -26,6 +26,9 @@ export function getglobalZ (){
 }
 export function getglobalNameMap (){
     return globalNameMap;
+}
+export function getIsGeneratingMap(){
+    return isGeneratingMap;
 }
 export function getValueInput(){
     const x = parseInt(inputRow.value, 10) || 1;
@@ -53,4 +56,7 @@ export function setglobalNameMap(nameMap){
 }   
 export function setGlobalJSONMap(jsonMap) {
     globalJSONMap = jsonMap;
+}
+export function setIsGeneratingMap() {
+    isGeneratingMap = true;
 }
