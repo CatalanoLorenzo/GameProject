@@ -7,12 +7,7 @@ import
             getglobalY,
             getglobalZ,
             getglobalNameMap,
-            getIsGeneratingMap,
-            setIsGeneratingMap,
-            setglobalX,
-            setglobalY,
-            setglobalZ,
-            setglobalNameMap
+            setIsGeneratingMap
         }
 from './globalVariables.js';
 import  
@@ -33,6 +28,12 @@ import
             renderMap 
         } 
 from './renderMap.js';
+import
+        {
+            updateGrid
+        }
+from './updateMap.js';
+        
 
 ////////////////////////////////////////
 //FUNZIONIUTILITY: Funzioni di utilità//
@@ -79,8 +80,8 @@ function createCube(){
  */
 export function generateMap(map){ 
     map.innerHTML='';
-    let y = getglobalY();
-    let x = getglobalX();
+    let y = getglobalY()+1;
+    let x = getglobalX()+1;
     let nameMap = getglobalNameMap();
     for(let j = 0; j < y; j++){
         for(let k = 0; k < x; k++){
@@ -98,42 +99,42 @@ export function generateMap(map){
  */
 export function genetateJSONMap() {
     
-    let JSONMap = [];
+    let JSONMap = {infoMap:{}, map:[]};
     let x = getglobalX();
     let y = getglobalY();
     let z = getglobalZ();
     let nameMap = getglobalNameMap();
-    let infoMap = [
-        {
-            nameMap:nameMap,
-            x:x,
-            y:y,
-            z:z
-        }
-    ]
+    let infoMap =   {
+                        nameMap:nameMap,
+                        x:x,
+                        y:y,
+                        z:z
+
+                    };
+    JSONMap["infoMap"] = infoMap;
+                   
+        
     for (let i = 0; i < z; i++) {
         let layer = [];
         for (let j = 0; j < y; j++) {
             for (let k = 0; k < x; k++) {
                 const cubeJson =    {
-                                        IdCube:`x${x}y${y}z${z}-L${z}-${nameMap}`,
-                                        x:0,
-                                        y:0,
-                                        z:0,
+                                        IdCube:`x${k}y${j}z${i}-L${i}-${nameMap}`,
+                                        x:k,
+                                        y:j,
+                                        z:i,
                                         mashCode:'0000',
                                         isLooked:false,
                                         listPlayer:[],
                                         listItem:[],
                                         telepot:[],
                                         listEvent:[]
-                                    }
+                                    };
                 layer.push(cubeJson);
             }
-         
         }
-        JSONMap.push(layer);  
-    }
-    JSONMap.push(infoMap);
+        JSONMap["map"].push(layer);  
+    }    
     return JSONMap;
 }
 /**downloadJSONMap consente di scaricare la mappa in formato JSON. Il nome del file è basato sul nome della mappa fornito dall'utente.
@@ -157,60 +158,3 @@ export function downloadJSONMap(globalJSONMap) {
     URL.revokeObjectURL(url);
 }
 
-/**updateGrid è una funzione che viene chiamata quando l'utente modifica uno degli input (righe, colonne, altezza, nome mappa) durante la generazione della mappa.
- * 
- * @param {EventListener} e 
- */
-export function updateGrid(e){
-    if (getIsGeneratingMap()) {
-        let id = e.currentTarget.id;
-        let value = e.currentTarget.value;
-        console.log(`e.currentTarget.id : ${e.currentTarget.id}   e.target.value : ${e.target.value}`);
-        let isChangeValue = false;
-        switch (id) {
-            case "input-row-map":
-                let oldX = getglobalX();
-                let newX = parseInt(value, 10) || 1;
-                updateJsonMap(oldX,newX);
-                setglobalX(newX);
-                isChangeValue = true;
-                break;
-            case "input-col-map":
-                let oldY = getglobalY();
-                let newY = parseInt(value, 10) || 1;
-                updateJsonMap(oldY,newY);
-                setglobalY(newY);
-                isChangeValue = true;
-                break;
-            case "input-height-map":
-                let oldZ = getglobalZ();
-                let newZ = parseInt(value, 10) || 1;
-                updateJsonMap(oldZ,newZ);
-                setglobalZ(newZ);
-                isChangeValue = true;
-                break;
-            case "input-NameMap-map":
-                let oldNameMap = getglobalNameMap();
-                let newNameMap = value || '';
-                updateJsonMap(oldNameMap,newNameMap);
-                setglobalNameMap(newNameMap);
-                isChangeValue = true;
-                break;
-            default:
-                console.error(`ID non riconosciuto: ${id}`);
-                break;
-        }
-        if (isChangeValue) {
-            updateMap();
-        }
-    }
-}
-
-export function updateJsonMap(oldValue,newValue){
-    console.log("updateJsonMap");
-    
-}
-
-export function updateMap(){
-    console.log("updateMap");
-}

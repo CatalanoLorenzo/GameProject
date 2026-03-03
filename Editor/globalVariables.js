@@ -31,9 +31,9 @@ export function getIsGeneratingMap(){
     return isGeneratingMap;
 }
 export function getValueInput(){
-    const x = parseInt(inputRow.value, 10) || 1;
-    const y = parseInt(inputCol.value, 10) || 1;
-    const z = parseInt(inputHeight.value, 10) || 1;
+    const x = parseInt(inputRow.value) ;
+    const y = parseInt(inputCol.value) ;
+    const z = parseInt(inputHeight.value) ;
     const nameMap = inputNameMap.value || '';
     globalNameMap = nameMap;
     globalX = x;

@@ -10,7 +10,7 @@ import  {
 import  { 
             setGlobalJSONMap,
             getglobalX,
-            getglobalY,
+    getglobalY,
             getglobalZ,
             getglobalNameMap,
             getValueInput,
@@ -25,8 +25,8 @@ export function renderMap(map,tools){
 
     // Dopo il rendering, calcola la larghezza del singolo cubo
     // in modo che ogni riga contenga `globalX` cubi e costruisci una grid
-    const cols = parseInt(getglobalX(), 10) || 1;
-    const totalW = map.getBoundingClientRect().width || 0;
+    const cols = parseInt(getglobalX()+1)  ;
+    const totalW = map.getBoundingClientRect().width ;
     const cubeW = Math.max(1, Math.floor(totalW / cols));
     document.documentElement.style.setProperty('--widthCube', `${cubeW}px`);
     document.documentElement.style.setProperty('--heightCube', `${cubeW}px`);
