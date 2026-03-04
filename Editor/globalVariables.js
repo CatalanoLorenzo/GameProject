@@ -8,7 +8,8 @@ let globalJSONMap = [];
 let globalNameMap = '';
 let globalX = 0;
 let globalY = 0;
-let globalZ = 0;    
+let globalZ = 0;  
+let globalSelectZ = 0;  
 let isGeneratingMap = false; 
 
 
@@ -29,6 +30,9 @@ export function getglobalNameMap (){
 }
 export function getIsGeneratingMap(){
     return isGeneratingMap;
+}
+export function getGlobalSelectZ(){
+    return globalSelectZ;
 }
 export function getValueInput(){
     const x = parseInt(inputRow.value) ;
@@ -59,4 +63,7 @@ export function setGlobalJSONMap(jsonMap) {
 }
 export function setIsGeneratingMap() {
     isGeneratingMap = true;
+}
+export function setGlobalSelectZ(selectZ){
+    globalSelectZ = selectZ;
 }

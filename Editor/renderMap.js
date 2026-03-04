@@ -5,18 +5,22 @@ import  {
         }from "./functioUtility.js";
 import  { 
             bottonCreateMap,
-            bottonDownloadJsonMap
+            bottonDownloadJsonMap,
+            inputSelectZ,
+            labelinputSelectZ
         }from './tools.js';
 import  { 
             setGlobalJSONMap,
+            setGlobalSelectZ,
             getglobalX,
-    getglobalY,
+            getglobalY,
             getglobalZ,
             getglobalNameMap,
             getValueInput,
             getGlobalJSONMap
 
         }from "./globalVariables.js";
+import { updateMap } from "./updateMap.js";
 export function renderMap(map,tools){
     console.log("Generazione mappa inizio");
 
@@ -41,6 +45,12 @@ export function renderMap(map,tools){
     tools.appendChild(bottonDownloadJsonMap);
     bottonDownloadJsonMap.onclick = function() {downloadJSONMap(getGlobalJSONMap())};
     tools.removeChild(bottonCreateMap);
+    tools.appendChild(labelinputSelectZ);
+    tools.appendChild(inputSelectZ);
+    inputSelectZ.onchange = function(e) {
+        setGlobalSelectZ(parseInt(e.target.value));
+        updateMap();
+    }
     console.log("Generazione mappa Fine");
 
 }

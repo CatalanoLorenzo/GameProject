@@ -66,9 +66,9 @@ export function mountElementOnTools(tools){
  * 
  * @returns {HTMLDivElement} - Il div che rappresenta un cubo
  */
-function createCube(){ 
+export function createCube(x,y,z,nameMap){ 
     const divCube = document.createElement('div');
-    divCube.id = `x${getglobalX()}y${getglobalY()}z${getglobalZ()}-L${getglobalZ()}-${getglobalNameMap()}`;
+    divCube.id = `x${x}y${y}z${z}-L${z}-${nameMap}`;
     divCube.defaultValue = 0;
     divCube.classList.add("cube");
     return divCube;
@@ -114,23 +114,23 @@ export function genetateJSONMap() {
     JSONMap["infoMap"] = infoMap;
                    
         
-    for (let i = 0; i < z; i++) {
-        let layer = [];
-        for (let j = 0; j < y; j++) {
-            for (let k = 0; k < x; k++) {
-                const cubeJson =    {
-                                        IdCube:`x${k}y${j}z${i}-L${i}-${nameMap}`,
-                                        x:k,
-                                        y:j,
-                                        z:i,
-                                        mashCode:'0000',
-                                        isLooked:false,
-                                        listPlayer:[],
-                                        listItem:[],
-                                        telepot:[],
-                                        listEvent:[]
-                                    };
-                layer.push(cubeJson);
+    for (let i = 0; i <= z; i++) {
+        let layer = {};
+        for (let j = 0; j <= y; j++) {
+            for (let k = 0; k <= x; k++) {
+            let idCube = `x${k}y${j}z${i}-L${i}-${nameMap}`;
+            layer[idCube] = {
+                                    IdCube: idCube,
+                                    x:k,
+                                    y:j,
+                                    z:i,
+                                    mashCode:'0000',
+                                    isLooked:false,
+                                    listPlayer:[],
+                                    listItem:[],
+                                    telepot:[],
+                                    listEvent:[]
+                                };                  
             }
         }
         JSONMap["map"].push(layer);  

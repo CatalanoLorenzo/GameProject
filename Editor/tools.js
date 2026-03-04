@@ -1,4 +1,4 @@
-import { labelRow, labelCol ,labelHeight,labelGenerateMap,labelNameMap,labelDownloadMap} from "./labelTextIta.js";
+import { labelRow, labelCol ,labelHeight,labelGenerateMap,labelNameMap,labelDownloadMap,labelSelectZ} from "./labelTextIta.js";
 export const labelinputRow = document.createElement('label');
 labelinputRow.htmlFor = "input-row-map";
 labelinputRow.innerText = labelRow;
@@ -33,6 +33,18 @@ inputHeight.type = "number";
 inputHeight.id = "input-height-map";
 inputHeight.min = 0;
 inputHeight.value = 0;
+inputHeight.defaultValue = 0;
+
+export const labelinputSelectZ = document.createElement('label');
+labelinputSelectZ.htmlFor = "input-select-z";
+labelinputSelectZ.innerText = labelSelectZ;
+
+export const inputSelectZ= document.createElement('input');
+inputSelectZ.classList.add("input-select-z");
+inputSelectZ.type = "number";
+inputSelectZ.id = "input-select-z";
+inputSelectZ.min = 0;
+inputSelectZ.value = 0;
 inputHeight.defaultValue = 0;
 
 export const labelinputNameMap = document.createElement('label');
