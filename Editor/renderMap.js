@@ -36,8 +36,7 @@ import { updateMap } from "./updateMap.js";
 export function renderMap(map,tools){
     console.log("Generazione mappa inizio");
 
-    getValueInput();
-    generateMap(map);
+       getValueInput();
 
     // Dopo il rendering, calcola la larghezza del singolo cubo
     // in modo che ogni riga contenga `globalX` cubi e costruisci una grid
@@ -54,6 +53,8 @@ export function renderMap(map,tools){
     const jsonMap = genetateJSONMap(getglobalX(),getglobalY(),getglobalZ(),getglobalNameMap());
     // aggiorna la variabile globale esportata in functioUtility
     setGlobalJSONMap(jsonMap);
+    generateMap(map,jsonMap);
+
     tools.appendChild(bottonDownloadJsonMap);
     bottonDownloadJsonMap.onclick = function() {downloadJSONMap(getGlobalJSONMap())};
     tools.removeChild(bottonCreateMap);

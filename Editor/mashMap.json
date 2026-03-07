@@ -1,33 +1,33 @@
 {
-    "0000": {
+    "mash0000": {
         "name": "Nessuna mesh",
         "type": "empty"
     },
-    "0001": {
+    "mash0001": {
         "name": "Erba",
         "type": "Erba"
     },
-    "0002": {
+    "mash0002": {
         "name": "Strada",
         "type": "Strada"
     },
-    "0003": {
+    "mash0003": {
         "name": "Acqua",
         "type": "Acqua"
     },
-    "0004": {
+    "mash0004": {
         "name": "Sabbia",
         "type": "Sabbia"
     },
-    "0005": {
+    "mash0005": {
         "name": "Muro",
         "type": "Muro"
     },
-    "0006": {
+    "mash0006": {
         "name": "Pavimento",
         "type": "Pavimento"
     },
-    "0007": {
+    "mash0007": {
         "name": "Terreno",
         "type": "Terreno"
     }

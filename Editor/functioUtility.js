@@ -77,6 +77,8 @@ export function createCube(x,y,z,nameMap){
     divCube.id = `x${x}y${y}z${z}-L${z}-${nameMap}`;
     divCube.defaultValue = 0;
     divCube.classList.add("cube");
+    let cubeJson = getCubeJsonSelectedById(divCube.id);
+    divCube.classList.add(`${cubeJson["mashCode"]}`);
     divCube.onclick = (e) => {
         showToolsCube(e);
     }
@@ -87,7 +89,7 @@ export function createCube(x,y,z,nameMap){
  * 
  * @param {HTMLDocument} map 
  */
-export function generateMap(map){ 
+export function generateMap(map,jsonMap){ 
     map.innerHTML='';
     let y = getglobalY()+1;
     let x = getglobalX()+1;
@@ -95,6 +97,7 @@ export function generateMap(map){
     for(let j = 0; j < y; j++){
         for(let k = 0; k < x; k++){
             let cube = createCube(k,j,0,nameMap);
+           
             map.appendChild(cube);
             setIsGeneratingMap();
         }
@@ -132,7 +135,7 @@ export function genetateJSONMap() {
                                     x:k,
                                     y:j,
                                     z:i,
-                                    mashCode:'0000',
+                                    mashCode:'mash0000',
                                     isLooked:false,
                                     listPlayer:[],
                                     listItem:[],
