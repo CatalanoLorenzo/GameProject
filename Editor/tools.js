@@ -1,4 +1,5 @@
-import { labelRow, labelCol ,labelHeight,labelGenerateMap,labelNameMap,labelDownloadMap,labelSelectZ} from "./labelTextIta.js";
+import { labelRow, labelCol ,labelHeight,labelGenerateMap,labelNameMap,labelDownloadMap,labelSelectZ,labelSelectMesh} from "./labelTextIta.js";
+import { getGlobalJsonMash } from "./globalVariables.js"; 
 export const labelinputRow = document.createElement('label');
 labelinputRow.htmlFor = "input-row-map";
 labelinputRow.innerText = labelRow;
@@ -58,6 +59,22 @@ inputNameMap.id = "input-NameMap-map";
 inputNameMap.min = 1;
 inputNameMap.max = 255;
 inputNameMap.defaultValue = 'NameMap';
+
+export const labelSelectInputMesh = document.createElement('label');
+labelSelectInputMesh.htmlFor = "select-mesh";
+labelSelectInputMesh.innerText = labelSelectMesh;
+
+export const selectMesh = document.createElement('select');
+selectMesh.classList.add("select-mesh");
+selectMesh.id = "select-mesh";
+const jsonMash = getGlobalJsonMash();
+for (const meshKey in  jsonMash) {
+    const option = document.createElement('option');
+    option.value = meshKey;
+    option.text = jsonMash[meshKey]["name"];
+    selectMesh.appendChild(option);
+}
+
 
 export const bottonCreateMap = document.createElement('button');
 bottonCreateMap.classList.add("botton-create-map");

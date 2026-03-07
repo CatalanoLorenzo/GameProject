@@ -5,4 +5,5 @@ export const labelGenerateMap = "Genara Mappa";
 export const labelDownloadMap = "Scarica Mappa";
 export const labelNameMap = "Nome Mappa: ";
 export const labelSelectZ = "Seleziona altezza Z su cui vuoi lavorare: ";
+export const labelSelectMesh = "Seleziona il tipo di mesh da posizionare: ";
 

@@ -1,17 +1,12 @@
-import  {
-            inputRow,
-            inputCol ,
-            inputHeight,
-            inputNameMap
-        } from './tools.js';
-let globalJSONMap = [];
+const jsonMashup = await (await fetch(new URL('./mashMap.json', import.meta.url))).json();
+let globalJsonMash = jsonMashup;
+let globalJSONMap = []; 
 let globalNameMap = '';
 let globalX = 0;
 let globalY = 0;
 let globalZ = 0;  
 let globalSelectZ = 0;  
 let isGeneratingMap = false; 
-
 
 export function getGlobalJSONMap(){
     return globalJSONMap;
@@ -34,11 +29,19 @@ export function getIsGeneratingMap(){
 export function getGlobalSelectZ(){
     return globalSelectZ;
 }
+export function getCubeJsonSelectedById(id){
+    const match = id.match(/z([^-]+)-/);
+    const layer = match ? match[1] : null;
+    return globalJSONMap['map'][layer][id] ;
+}
+export function getGlobalJsonMash(){
+    return globalJsonMash;
+}
 export function getValueInput(){
-    const x = parseInt(inputRow.value) ;
-    const y = parseInt(inputCol.value) ;
-    const z = parseInt(inputHeight.value) ;
-    const nameMap = inputNameMap.value || '';
+    const x = parseInt(document.getElementById('input-row-map')?.value ?? 0);
+    const y = parseInt(document.getElementById('input-col-map')?.value ?? 0);
+    const z = parseInt(document.getElementById('input-height-map')?.value ?? 0);
+    const nameMap = document.getElementById('input-NameMap-map')?.value || '';
     globalNameMap = nameMap;
     globalX = x;
     globalY = y;

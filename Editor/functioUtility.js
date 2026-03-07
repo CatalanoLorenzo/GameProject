@@ -1,13 +1,16 @@
-//////////////////////////////////
-//IMPORTAZIONE VARIABILI GLOBALI//
-//////////////////////////////////
+////////////////
+//IMPORTAZIONE/
+///////////////
 import  
         { 
             getglobalX,
             getglobalY,
             getglobalZ,
             getglobalNameMap,
-            setIsGeneratingMap
+            setIsGeneratingMap,
+            getCubeJsonSelectedById,
+            setGlobalJSONMap,
+            getGlobalJSONMap,
         }
 from './globalVariables.js';
 import  
@@ -20,7 +23,9 @@ import
             inputHeight,
             labelinputNameMap,
             inputNameMap,
-            bottonCreateMap
+            bottonCreateMap,
+            labelSelectInputMesh,
+            selectMesh
         }   
 from './tools.js';    
 import  
@@ -30,7 +35,8 @@ import
 from './renderMap.js';
 import
         {
-            updateGrid
+            updateGrid,
+            updateMap
         }
 from './updateMap.js';
         
@@ -71,6 +77,9 @@ export function createCube(x,y,z,nameMap){
     divCube.id = `x${x}y${y}z${z}-L${z}-${nameMap}`;
     divCube.defaultValue = 0;
     divCube.classList.add("cube");
+    divCube.onclick = (e) => {
+        showToolsCube(e);
+    }
     return divCube;
 }
 /**generateMap è una funzione che genera la mappa visuale basata sulle dimensioni (x, y) e il nome della mappa forniti.
@@ -91,8 +100,7 @@ export function generateMap(map){
         }
     }
 }
-/**
- * Genera una rappresentazione JSON della mappa basata sulle dimensioni e il nome forniti.
+/**Genera una rappresentazione JSON della mappa basata sulle dimensioni e il nome forniti.
  * La struttura JSON è un array di layer, dove ogni layer contiene un array di cubi con le loro proprietà.
  * @param {String} nameMap 
  * @returns {Array} JSONMap - La rappresentazione JSON della mappa
@@ -156,5 +164,29 @@ export function downloadJSONMap(globalJSONMap) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+}
+export function showToolsCube(e){
+    console.log(`Informazioni del cubo ${e.target.id}: Valore: ${e.target.defaultValue}`);
+    let cubeJson = getCubeJsonSelectedById(e.target.id);
+    console.log(JSON.stringify(cubeJson));
+    const tools = document.getElementById('tools');
+    tools.appendChild(labelSelectInputMesh);
+    selectMesh.value = cubeJson.mashCode;
+    selectMesh.onchange = function(ev) {updateMashCube(ev, cubeJson)};
+    tools.appendChild(selectMesh);
+}
+export function updateMashCube(ev, cubeJson){
+    const newMashCode = ev.target.value;
+    let globalJSONMap = getGlobalJSONMap();
+    let layer = globalJSONMap['map'][`${cubeJson.z}`];
+    if (layer && layer[cubeJson.IdCube]) {
+        layer[cubeJson.IdCube].mashCode = newMashCode;
+        setGlobalJSONMap(globalJSONMap);
+        updateMap();
+    } else {
+        console.error(`Cubo con ID ${cubeJson.IdCube} non trovato nel layer L${cubeJson.z}`);
+    }
+    console.log(`Aggiornamento mash del cubo ${cubeJson.IdCube} a ${newMashCode}`);
+  
 }
 

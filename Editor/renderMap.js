@@ -1,3 +1,6 @@
+////////////////
+//IMPORTAZIONE//
+////////////////
 import  { 
             genetateJSONMap,
             generateMap, 
@@ -21,6 +24,15 @@ import  {
 
         }from "./globalVariables.js";
 import { updateMap } from "./updateMap.js";
+
+/////////////
+//FUNZIONIU//
+////////////
+/**renderizza la mappa, genera il json e aggiorna gli strumenti per il download e la selezione del piano Z
+ * 
+ * @param {HTMLDivElement} map 
+ * @param {HTMLDivElement} tools 
+ */
 export function renderMap(map,tools){
     console.log("Generazione mappa inizio");
 

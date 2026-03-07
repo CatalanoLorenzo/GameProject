@@ -234,7 +234,11 @@ export function updateJsonMap(oldValue, newValue, inputType) {
     setGlobalJSONMap(globalJSONMap);
 }
 
-
+/**Aggiorna la visualizzazione della mappa basata sul JSON globale e sul livello Z selezionato.
+ * Ricostruisce la griglia dei cubi in base alle dimensioni e al nome della mappa, e adatta le dimensioni dei cubi per riempire lo spazio disponibile.
+ * Viene chiamata ogni volta che l'utente modifica uno degli input durante la generazione della mappa.
+ * @returns {void}
+ */
 export function updateMap(){
     console.log("updateMap");
     let globalJSONMap = getGlobalJSONMap();
