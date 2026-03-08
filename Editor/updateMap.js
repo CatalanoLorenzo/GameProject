@@ -85,10 +85,16 @@ function createCubeJson(x, y, z, nameMap) {
         z: z,
         mashCode: '0000',
         isLooked: false,
-        listPlayer: [],
-        listItem: [],
-        telepot: [],
-        listEvent: []
+        listPlayer:[],
+        listItem:[],
+        telepot:{
+            isTelepot:false,
+            coordinates:{}
+        },
+        event:{
+            isEvent:false,
+            listEvent:[]
+        }
     };
 }
 
@@ -250,7 +256,6 @@ export function updateMap(){
     for(let j = 0; j <= y; j++){
         for(let k = 0; k <= x; k++){
             let cube = createCube(k,j,selectZ,globalJSONMap["infoMap"]["nameMap"]);
-            cube.classList.add(`${cube.mashCode}`);
             map.appendChild(cube);
         }
     }

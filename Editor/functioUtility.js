@@ -39,7 +39,12 @@ import
             updateMap
         }
 from './updateMap.js';
-        
+import
+        {
+            showToolsCube,
+            updateMashCube
+        }
+from './renderTollsCube.js';        
 
 ////////////////////////////////////////
 //FUNZIONIUTILITY: Funzioni di utilità//
@@ -79,6 +84,12 @@ export function createCube(x,y,z,nameMap){
     divCube.classList.add("cube");
     let cubeJson = getCubeJsonSelectedById(divCube.id);
     divCube.classList.add(`${cubeJson["mashCode"]}`);
+     if (cubeJson["mashCode"]!= undefined) {
+        divCube.classList.add(`${cubeJson["mashCode"]}`);  
+    }
+    if (cubeJson.isLooked !== undefined && cubeJson.isLooked ) {
+        divCube.classList.add('looked');
+    }
     divCube.onclick = (e) => {
         showToolsCube(e);
     }
@@ -139,8 +150,14 @@ export function genetateJSONMap() {
                                     isLooked:false,
                                     listPlayer:[],
                                     listItem:[],
-                                    telepot:[],
-                                    listEvent:[]
+                                    telepot:{
+                                        isTelepot:false,
+                                        coordinates:{}
+                                    },
+                                    event:{
+                                        isEvent:false,
+                                        listEvent:[]
+                                    }
                                 };                  
             }
         }
@@ -167,29 +184,5 @@ export function downloadJSONMap(globalJSONMap) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-}
-export function showToolsCube(e){
-    console.log(`Informazioni del cubo ${e.target.id}: Valore: ${e.target.defaultValue}`);
-    let cubeJson = getCubeJsonSelectedById(e.target.id);
-    console.log(JSON.stringify(cubeJson));
-    const tools = document.getElementById('tools');
-    tools.appendChild(labelSelectInputMesh);
-    selectMesh.value = cubeJson.mashCode;
-    selectMesh.onchange = function(ev) {updateMashCube(ev, cubeJson)};
-    tools.appendChild(selectMesh);
-}
-export function updateMashCube(ev, cubeJson){
-    const newMashCode = ev.target.value;
-    let globalJSONMap = getGlobalJSONMap();
-    let layer = globalJSONMap['map'][`${cubeJson.z}`];
-    if (layer && layer[cubeJson.IdCube]) {
-        layer[cubeJson.IdCube].mashCode = newMashCode;
-        setGlobalJSONMap(globalJSONMap);
-        updateMap();
-    } else {
-        console.error(`Cubo con ID ${cubeJson.IdCube} non trovato nel layer L${cubeJson.z}`);
-    }
-    console.log(`Aggiornamento mash del cubo ${cubeJson.IdCube} a ${newMashCode}`);
-  
 }
 

@@ -6,4 +6,13 @@ export const labelDownloadMap = "Scarica Mappa";
 export const labelNameMap = "Nome Mappa: ";
 export const labelSelectZ = "Seleziona altezza Z su cui vuoi lavorare: ";
 export const labelSelectMesh = "Seleziona il tipo di mesh da posizionare: ";
-
+export const labelIsBlockCube = "Si Può camminare sopra il cubo?: ";
+export const labelIsTelepotCube = "Il cubo è un teletrasporto?: ";
+export const labelDestinationLayerTelepotCube = "Layer di destinazione del teletrasporto: ";
+export const labelDestinationXTelepotCube = "Coordinata X di destinazione del teletrasporto: ";
+export const labelDestinationYTelepotCube = "Coordinata Y di destinazione del teletrasporto: ";
+export const labelBottonAddTeleportCube = "Aggiungi Teletrasporto al Cubo";
+export const labelBottonRemoveTeleportCube = "Rimuovi Teletrasporto dal Cubo";
+export const labelNewTeleportCordinates = "Nuova cordinata";
+export const labelNameTeleport = "Nome teletrasporto : ";
+export const labelNameMapTeleport = "Mappa di destinazione del teletrasporto : ";
