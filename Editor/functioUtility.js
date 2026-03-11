@@ -42,10 +42,10 @@ from './updateMap.js';
 import
         {
             showToolsCube,
-            updateMashCube
         }
 from './renderTollsCube.js';        
-
+import  {updateMashCube} from './utilityToolMash.js';
+import  {updateIsBlockCube} from './utilityToolIsBlock.js';
 ////////////////////////////////////////
 //FUNZIONIUTILITY: Funzioni di utilità//
 ////////////////////////////////////////
