@@ -20,9 +20,16 @@ import  {
             labelBottonRemoveTeleportCube,
             labelNewTeleportCordinates,
             labelNameTeleport,
-            labelNameMapTeleport
-        }
+            labelNameMapTeleport,
+            labelSelectEvent,
+            labelNewEvent,
+            labelIsEvent,
+            labelNameEvent,
+            labelBottonAddEvent,
+            labelBottonRemoveEvent
+        } 
 from "./labelTextIta.js";
+
 import  { 
             getGlobalJsonMash 
         } 
@@ -83,6 +90,19 @@ labelinputNameMapTeleport.innerText = labelNameMapTeleport;
 export const labelinputNameTeleport = document.createElement('label');
 labelinputNameTeleport.htmlFor = "input-name-teleport";
 labelinputNameTeleport.innerText = labelNameTeleport;
+
+
+export const labelSelectInputEvent = document.createElement('label');
+labelSelectInputEvent.htmlFor = "select-event";
+labelSelectInputEvent.innerText = labelSelectEvent;
+
+export const labelcheckBoxIsEvent = document.createElement('label');
+labelcheckBoxIsEvent.htmlFor = "checkbox-is-event";
+labelcheckBoxIsEvent.innerText = labelIsEvent;
+
+export const labelInputEventName = document.createElement('label');
+labelInputEventName.htmlFor = "input-event-name";
+labelInputEventName.innerText = labelNameEvent;
 
 /////////////////////////////////////////////////////////||
 //                     Sezione Input                     ||
@@ -198,6 +218,29 @@ inputDestinationY.min = 0;
 inputDestinationY.value = 0;
 inputDestinationY.defaultValue = 0;
 
+export const selectEvent = document.createElement('select');
+selectEvent.classList.add("select-event");
+selectEvent.id = "select-event";
+const optionEvent = document.createElement('option');
+optionEvent.value = labelNewEvent;
+optionEvent.text = labelNewEvent;
+selectEvent.appendChild(optionEvent);
+
+export const checkBoxIsEvent = document.createElement('input');   
+checkBoxIsEvent.classList.add("checkbox-is-event");
+checkBoxIsEvent.type = "checkbox";
+checkBoxIsEvent.id = "checkbox-is-event";
+checkBoxIsEvent.checked = false;
+
+export const inputEventName = document.createElement('input');
+inputEventName.classList.add("input-event-name");
+inputEventName.type = "text";
+inputEventName.id = "input-event-name";
+inputEventName.min = 1;
+inputEventName.max = 255;
+inputEventName.defaultValue = 'NameEvent';
+
+
 /////////////////////////////////////////////////////////||
 //                     Sezione Bottoni                   ||
 /////////////////////////////////////////////////////////||
@@ -226,6 +269,17 @@ bottonRemoveTelepot.id = "botton-remove-telepot";
 bottonRemoveTelepot.type = "button";
 bottonRemoveTelepot.innerText = labelBottonRemoveTeleportCube;
 
+export const bottonAddEvent = document.createElement('button');
+bottonAddEvent.classList.add("botton-add-event");
+bottonAddEvent.id = "botton-add-event";
+bottonAddEvent.type = "button";
+bottonAddEvent.innerText = labelBottonAddEvent
+
+export const bottonRemoveEvent= document.createElement('button');
+bottonRemoveEvent.classList.add("botton-remove-event");
+bottonRemoveEvent.id = "botton-remove-event";
+bottonRemoveEvent.type = "button";
+bottonRemoveEvent.innerText = labelBottonRemoveEvent;
 ////////////////////////////////////////////////////////////||
 //                     Sezione Div                          ||
 ////////////////////////////////////////////////////////////||
@@ -233,6 +287,10 @@ bottonRemoveTelepot.innerText = labelBottonRemoveTeleportCube;
 export const divToolsTelepot = document.createElement('div');
 divToolsTelepot.classList.add("d-flex", "flex-column");
 divToolsTelepot.id = "div-tools-telepot";
+
+export const divToolsEvent = document.createElement('div');
+divToolsEvent.classList.add("d-flex", "flex-column");
+divToolsEvent.id = "div-tools-event";
 
 ////////////////////////////////////////////////////////////||
 //                Sezione Unordered List                    ||

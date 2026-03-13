@@ -14,7 +14,10 @@ import  {
             checkBoxIsBlockCube,
             labelcheckBoxIsTelepot,
             checkBoxIsTelepot,
-            divToolsTelepot
+            divToolsTelepot,
+            labelcheckBoxIsEvent,
+            checkBoxIsEvent,
+            divToolsEvent,
         } 
 from './tools.js';
 
@@ -34,6 +37,11 @@ import  {
             updateIsBlockCube
         } 
 from './utilityToolIsBlock.js';
+
+import  { 
+            updateIsEventCube 
+        } 
+from './utilityToolEvent.js';
 
 /////////////////////////////////////////////////////////||
 //                    Sezione Funzioni                   ||
@@ -62,6 +70,11 @@ export function showToolsCube(e){
     }else{
         divToolsTelepot.innerHTML = '';
     }
+    tools.appendChild(labelcheckBoxIsEvent);
+    checkBoxIsEvent.checked = cubeJson.isEvent;
+    checkBoxIsEvent.onchange = function(ev) {updateIsEventCube(ev, cubeJson)};
+    tools.appendChild(checkBoxIsEvent);
+    tools.appendChild(divToolsEvent);
 
 }
 

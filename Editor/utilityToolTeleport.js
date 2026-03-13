@@ -38,7 +38,11 @@ from "./labelTextIta.js";
 /////////////////////////////////////////////////////////||
 //                    Sezione Funzioni                   ||
 /////////////////////////////////////////////////////////||
-
+/**updateIsTeleportCube metodo che serve ad abilitare un teletrasporto sul JSON di un cubo
+ *  e a far partire il render dei tool per il teletrasporto
+ * @param {Event} ev 
+ * @param {JSON} cubeJson 
+ */
 export function updateIsTelepotCube(ev, cubeJson){
     const isTelepotCube = ev.target.checked;
     let globalJSONMap = getGlobalJSONMap();
