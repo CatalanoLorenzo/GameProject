@@ -19,7 +19,8 @@ import  {
             labelInputEventName,
             inputEventName,
             bottonAddEvent,
-            bottonRemoveEvent
+            bottonRemoveEvent,
+            divToolsEvent
         } 
 from './tools.js';
 
@@ -63,7 +64,7 @@ export function updateIsEventCube(ev, cubeJson){
  * @param {JSON} eventJson 
  */
 export function renderEventSet(eventJson){
-    const divToolsEvent = document.getElementById('div-tools-event');
+    
     divToolsEvent.innerHTML = '';
     selectEvent.onchange = function() {updateValueInputEvent()};
     const arrayOptionsEvent = Array.from(selectEvent.options);

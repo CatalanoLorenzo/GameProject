@@ -31,7 +31,10 @@ import  {
             labelUploadMap,
             labelYesOrNoUpladMap,
             labelYes,
-            labelNo
+            labelNo,
+            labelBottonAddPlayerCube,
+            labelBottonRemovePlayerCube,
+            labelNewPlayer
         } 
 from "./labelTextIta.js";
 
@@ -253,6 +256,28 @@ inputUpLoadMap.classList.add('input-upload-map');
 inputUpLoadMap.type ='file';
 inputUpLoadMap.id = 'input-upload-map';
 
+export const selectPlayer = document.createElement('select');
+selectPlayer.classList.add("select-player");
+selectPlayer.id = "select-player";
+const optionEvent = document.createElement('option');
+optionEvent.value = labelNewPlayer;
+optionEvent.text = labelNewPlayer;
+selectPlayer.appendChild(optionEvent);
+
+export const checkBoxIsPlayer = document.createElement('input');   
+checkBoxIsPlayer.classList.add("checkbox-is-player");
+checkBoxIsPlayer.type = "checkbox";
+checkBoxIsPlayer.id = "checkbox-is-player";
+checkBoxIsPlayer.checked = false;
+
+export const inputPlayerName = document.createElement('input');
+inputPlayerName.classList.add("input-Player-name");
+inputPlayerName.type = "text";
+inputPlayerName.id = "input-Player-name";
+inputPlayerName.min = 1;
+inputPlayerName.max = 255;
+inputPlayerName.defaultValue = 'NamePlayer';
+
 
 /////////////////////////////////////////////////////////||
 //                     Sezione Bottoni                   ||
@@ -310,6 +335,18 @@ bottonNo.classList.add('botton-no');
 bottonNo.type = 'button';
 bottonNo.innerText = labelNo;
 
+export const bottonAddPlayer = document.createElement('button');
+bottonAddPlayer.classList.add("botton-add-player");
+bottonAddPlayer.id = "botton-add-player";
+bottonAddPlayer.type = "button";
+bottonAddPlayer.innerText = labelBottonAddPlayerCube
+
+export const bottonRemovePlayer = document.createElement('button');
+bottonRemovePlayer.classList.add("botton-remove-player");
+bottonRemovePlayer.id = "botton-remove-player";
+bottonRemovePlayer.type = "button";
+bottonRemovePlayer.innerText = labelBottonRemovePlayerCube;
+
 ////////////////////////////////////////////////////////////||
 //                     Sezione Div                          ||
 ////////////////////////////////////////////////////////////||
@@ -321,6 +358,10 @@ divToolsTelepot.id = "div-tools-telepot";
 export const divToolsEvent = document.createElement('div');
 divToolsEvent.classList.add("d-flex", "flex-column");
 divToolsEvent.id = "div-tools-event";
+
+export const divToolsPlayers = document.createElement('div');
+divToolsPlayers.classList.add("d-flex", "flex-column");
+divToolsPlayers.id = "div-tools-players";
 
 export const  divModalUploadMap = document.createElement('div');
 divToolsEvent.classList.add("d-flex", "flex-column");
