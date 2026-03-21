@@ -10,7 +10,8 @@ import  {
             bottonCreateMap,
             bottonDownloadJsonMap,
             inputSelectZ,
-            labelinputSelectZ
+            labelinputSelectZ,
+            divModalUploadMap
         }from './tools.js';
 import  { 
             setGlobalJSONMap,
@@ -35,7 +36,9 @@ import { updateMap } from "./updateMap.js";
  */
 export function renderMap(map,tools){
     console.log("Generazione mappa inizio");
-
+     if(tools.contains(divModalUploadMap)){
+        tools.removeChild(divModalUploadMap);
+     };
        getValueInput();
 
     // Dopo il rendering, calcola la larghezza del singolo cubo

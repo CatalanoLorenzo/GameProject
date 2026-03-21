@@ -8,9 +8,7 @@ import
             getglobalZ,
             getglobalNameMap,
             setIsGeneratingMap,
-            getCubeJsonSelectedById,
-            setGlobalJSONMap,
-            getGlobalJSONMap,
+            getCubeJsonSelectedById
         }
 from './globalVariables.js';
 import  
@@ -24,8 +22,13 @@ import
             labelinputNameMap,
             inputNameMap,
             bottonCreateMap,
-            labelSelectInputMesh,
-            selectMesh
+            bottonUpLoadMap,
+            divModalUploadMap,
+            inputUpLoadMap,
+            divModalYesOrNo,
+            pYesOrNoUploadMap,
+            bottonYes,
+            bottonNo
         }   
 from './tools.js';    
 import  
@@ -35,8 +38,7 @@ import
 from './renderMap.js';
 import
         {
-            updateGrid,
-            updateMap
+            updateGrid
         }
 from './updateMap.js';
 import
@@ -44,8 +46,6 @@ import
             showToolsCube,
         }
 from './renderTollsCube.js';        
-import  {updateMashCube} from './utilityToolMash.js';
-import  {updateIsBlockCube} from './utilityToolIsBlock.js';
 ////////////////////////////////////////
 //FUNZIONIUTILITY: Funzioni di utilità//
 ////////////////////////////////////////
@@ -70,6 +70,8 @@ export function mountElementOnTools(tools){
     tools.appendChild(inputNameMap);
     bottonCreateMap.onclick = () => renderMap(map, tools);
     tools.appendChild(bottonCreateMap);
+    bottonUpLoadMap.onclick = () => loadMapModal(tools);
+    tools.appendChild(bottonUpLoadMap);
 }
 /**createCube è una funzione che crea un elemento div che rappresenta un cubo nella mappa. 
  *Il div viene identificato da un ID univoco basato sulle coordinate (x, y, z) e sul nome della mappa. 
@@ -186,3 +188,31 @@ export function downloadJSONMap(globalJSONMap) {
     URL.revokeObjectURL(url);
 }
 
+export function loadMapModal(tools){
+     let globalNameMap = getglobalNameMap();
+     inputUpLoadMap.onchange = () => {loadJsonMap(e)};
+     if (globalNameMap == []) {
+         divModalUploadMap.appendChild(inputUpLoadMap);        
+     }else{
+        if (divModalUploadMap.contains(inputUpLoadMap)) {
+            
+            divModalUploadMap.removeChild(inputUpLoadMap);
+        }
+        divModalYesOrNo.appendChild(pYesOrNoUploadMap);
+        bottonYes.id = 'botton-yes-uplad-Map';
+        bottonNo.id =  'botton-no-uplad-Map';
+        bottonYes.onclick = () =>   {     
+                                        divModalUploadMap.innerHTML = "";
+                                        divModalUploadMap.appendChild(inputUpLoadMap);
+                                    }
+        bottonNo.onclick = () =>    {
+                                        tools.removeChild(divModalUploadMap);
+                                    }                            
+        divModalYesOrNo.appendChild(bottonYes);
+        divModalYesOrNo.appendChild(bottonNo);
+        divModalUploadMap.appendChild(divModalYesOrNo);
+     }
+    tools.appendChild(divModalUploadMap);
+}
+
+export function loadJsonMap(e){}

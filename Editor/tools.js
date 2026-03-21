@@ -26,7 +26,12 @@ import  {
             labelIsEvent,
             labelNameEvent,
             labelBottonAddEvent,
-            labelBottonRemoveEvent
+            labelBottonRemoveEvent,
+            labelUpLoadMap,
+            labelUploadMap,
+            labelYesOrNoUpladMap,
+            labelYes,
+            labelNo
         } 
 from "./labelTextIta.js";
 
@@ -91,7 +96,6 @@ export const labelinputNameTeleport = document.createElement('label');
 labelinputNameTeleport.htmlFor = "input-name-teleport";
 labelinputNameTeleport.innerText = labelNameTeleport;
 
-
 export const labelSelectInputEvent = document.createElement('label');
 labelSelectInputEvent.htmlFor = "select-event";
 labelSelectInputEvent.innerText = labelSelectEvent;
@@ -103,6 +107,10 @@ labelcheckBoxIsEvent.innerText = labelIsEvent;
 export const labelInputEventName = document.createElement('label');
 labelInputEventName.htmlFor = "input-event-name";
 labelInputEventName.innerText = labelNameEvent;
+
+export const labelInputUpLoadMap= document.createElement('label');
+labelInputUpLoadMap.htmlFor =  'input-upload-map';
+labelInputUpLoadMap.innerText = labelUploadMap;
 
 /////////////////////////////////////////////////////////||
 //                     Sezione Input                     ||
@@ -240,6 +248,11 @@ inputEventName.min = 1;
 inputEventName.max = 255;
 inputEventName.defaultValue = 'NameEvent';
 
+export const inputUpLoadMap = document.createElement('input');
+inputUpLoadMap.classList.add('input-upload-map');
+inputUpLoadMap.type ='file';
+inputUpLoadMap.id = 'input-upload-map';
+
 
 /////////////////////////////////////////////////////////||
 //                     Sezione Bottoni                   ||
@@ -280,6 +293,23 @@ bottonRemoveEvent.classList.add("botton-remove-event");
 bottonRemoveEvent.id = "botton-remove-event";
 bottonRemoveEvent.type = "button";
 bottonRemoveEvent.innerText = labelBottonRemoveEvent;
+
+export const bottonUpLoadMap = document.createElement('button');
+bottonUpLoadMap.classList.add("botton-load-map");
+bottonUpLoadMap.id = "botton-load-map";
+bottonUpLoadMap.type = "button";
+bottonUpLoadMap.innerText = labelUpLoadMap;
+
+export const bottonYes = document.createElement('button');
+bottonYes.classList.add('botton-yes');
+bottonYes.type = 'button';
+bottonYes.innerText = labelYes;
+
+export const bottonNo = document.createElement('button');
+bottonNo.classList.add('botton-no');
+bottonNo.type = 'button';
+bottonNo.innerText = labelNo;
+
 ////////////////////////////////////////////////////////////||
 //                     Sezione Div                          ||
 ////////////////////////////////////////////////////////////||
@@ -292,7 +322,20 @@ export const divToolsEvent = document.createElement('div');
 divToolsEvent.classList.add("d-flex", "flex-column");
 divToolsEvent.id = "div-tools-event";
 
+export const  divModalUploadMap = document.createElement('div');
+divToolsEvent.classList.add("d-flex", "flex-column");
+divToolsEvent.id = "div-tools-upload-map";
+
+export const divModalYesOrNo = document.createElement('div');
+divModalYesOrNo.classList.add("d-flex", "flex-column");
+divModalYesOrNo.id = 'div-tools-modal-yes-or-no';
+
 ////////////////////////////////////////////////////////////||
 //                Sezione Unordered List                    ||
 ////////////////////////////////////////////////////////////||
 
+////////////////////////////////////////////////////////////||
+//                  Sezione Paragraf                        ||
+////////////////////////////////////////////////////////////||
+export const pYesOrNoUploadMap = document.createElement('p');
+pYesOrNoUploadMap.innerHTML = labelYesOrNoUpladMap;
