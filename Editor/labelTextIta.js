@@ -30,3 +30,6 @@ export const labelNo = "No";
 export const labelBottonRemovePlayerCube ='Aggiungi/Modifica Giocatore al Cubo"';
 export const labelBottonAddPlayerCube = "Rimuovi Giocatore dal Cubo";
 export const labelNewPlayer = "Nuovo Giocatore";
+export const labelIsPlayers = "Sono presenti dei Player: ";
+export const labelNamePlayer = 'Nome Giocatore';
+export const labelSelectPlayer = 'Seleziona il Player da assegnare al cubo: '

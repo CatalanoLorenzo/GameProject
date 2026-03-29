@@ -34,7 +34,10 @@ import  {
             labelNo,
             labelBottonAddPlayerCube,
             labelBottonRemovePlayerCube,
-            labelNewPlayer
+            labelNewPlayer,
+            labelIsPlayers,
+            labelNamePlayer,
+            labelSelectPlayer
         } 
 from "./labelTextIta.js";
 
@@ -114,6 +117,19 @@ labelInputEventName.innerText = labelNameEvent;
 export const labelInputUpLoadMap= document.createElement('label');
 labelInputUpLoadMap.htmlFor =  'input-upload-map';
 labelInputUpLoadMap.innerText = labelUploadMap;
+
+export const labelcheckBoxIsPlayer =  document.createElement('label');
+labelcheckBoxIsPlayer.htmlFor =  'input-upload-map';
+labelcheckBoxIsPlayer.innerText = labelIsPlayers;
+
+export const labelInputPlayerName = document.createElement('label');
+labelInputEventName.htmlFor = "input-player-name";
+labelInputEventName.innerText = labelNamePlayer;
+
+export const labelSelectInputPlayer = document.createElement('label');
+labelInputEventName.htmlFor = "select-Player";
+labelInputEventName.innerText = labelSelectPlayer;
+
 
 /////////////////////////////////////////////////////////||
 //                     Sezione Input                     ||
@@ -259,10 +275,10 @@ inputUpLoadMap.id = 'input-upload-map';
 export const selectPlayer = document.createElement('select');
 selectPlayer.classList.add("select-player");
 selectPlayer.id = "select-player";
-const optionEvent = document.createElement('option');
-optionEvent.value = labelNewPlayer;
-optionEvent.text = labelNewPlayer;
-selectPlayer.appendChild(optionEvent);
+const optionPLayer = document.createElement('option');
+optionPLayer.value = labelNewPlayer;
+optionPLayer.text = labelNewPlayer;
+selectPlayer.appendChild(optionPLayer);
 
 export const checkBoxIsPlayer = document.createElement('input');   
 checkBoxIsPlayer.classList.add("checkbox-is-player");

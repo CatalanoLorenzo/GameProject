@@ -20,14 +20,11 @@ import  {
             inputPlayerName,
             bottonAddPlayer,
             bottonRemovePlayer,
-            divToolsPlayer,
-            bottonAddPlayer,
-            bottonRemovePlayer
+            divToolsPlayers
         } 
 from './tools.js';
 
 import  {
-            labelNewEvent,
             labelNewPlayer
         }
 from "./labelTextIta.js";
@@ -48,10 +45,10 @@ export function updateIsPlayerCube(ev, cubeJson){
         layer[cubeJson.IdCube]["player"].isPlayer = isPlayerCube;
         setGlobalJSONMap(globalJSONMap);
         if (isPlayerCube) {
-            renderEventSet(cubeJson.player);
+            renderPlayerSet(cubeJson.player);
         }else{            
-            const divToolsPlayer = document.getElementById('div-tools-player');
-            divToolsPlayer.innerHTML = '';
+            const divToolsPlayers = document.getElementById('div-tools-player');
+            divToolsPlayers.innerHTML = '';
         }
         updateMap();
     } else {
@@ -64,13 +61,12 @@ export function updateIsPlayerCube(ev, cubeJson){
  * @param {JSON} PlayerJson 
  */
 export function renderPlayerSet(PlayerJson){
-    
-    divToolsPlayer.innerHTML = '';
+    divToolsPlayers.innerHTML = '';
     selectPlayer.onchange = function() {updateIsPlayerCube()};
     const arrayOptionsEvent = Array.from(selectPlayer.options);
     arrayOptionsEvent.filter(option => option.value !== labelNewPlayer).forEach(option => selectPlayer.removeChild(option));
-    divToolsPlayer.appendChild(labelSelectInputPlayer);
-    divToolsPlayer.appendChild(selectPlayer);
+    divToolsPlayers.appendChild(labelSelectInputPlayer);
+    divToolsPlayers.appendChild(selectPlayer);
     if(Object.keys(PlayerJson.listPlayers).length > 0){
         Object.values(PlayerJson.listPlayers).forEach(player => {
             const optionPlayer = document.createElement('option');
@@ -79,12 +75,12 @@ export function renderPlayerSet(PlayerJson){
             selectPlayer.appendChild(optionPlayer);
         });
     }
-    divToolsPlayer.appendChild(labelInputPlayerName);
-    divToolsPlayer.appendChild(inputPlayerName);
-    bottonAddPlayer.onclick = function() {addPlayerCube(eventJson)};
-    divToolsPlayer.appendChild(bottonAddPlayer);
-    bottonRemovePlayer.onclick = function() {removePlayerCube(eventJson)};
-    divToolsPlayer.appendChild(bottonRemovePlayer);
+    divToolsPlayers.appendChild(labelInputPlayerName);
+    divToolsPlayers.appendChild(inputPlayerName);
+    bottonAddPlayer.onclick = function() {addPlayerCube(PlayerJson)};
+    divToolsPlayers.appendChild(bottonAddPlayer);
+    bottonRemovePlayer.onclick = function() {removePlayerCube(PlayerJson)};
+    divToolsPlayers.appendChild(bottonRemovePlayer);
 }
 /**
  *  

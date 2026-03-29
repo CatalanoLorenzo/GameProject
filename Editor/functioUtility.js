@@ -150,7 +150,10 @@ export function genetateJSONMap() {
                                     z:i,
                                     mashCode:'mash0000',
                                     isLooked:false,
-                                    listPlayer:[],
+                                    player: {
+                                                isPlayer:false,
+                                                listPlayers:[]
+                                            },
                                     listItem:[],
                                     telepot:{
                                         isTelepot:false,

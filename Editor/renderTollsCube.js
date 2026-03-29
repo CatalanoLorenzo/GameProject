@@ -18,6 +18,9 @@ import  {
             labelcheckBoxIsEvent,
             checkBoxIsEvent,
             divToolsEvent,
+            labelcheckBoxIsPlayer,
+            checkBoxIsPlayer,
+            divToolsPlayers
         } 
 from './tools.js';
 
@@ -42,6 +45,11 @@ import  {
             updateIsEventCube 
         } 
 from './utilityToolEvent.js';
+
+import  {
+            updateIsPlayerCube
+        }
+from './utilityToolPlayer.js';
 
 /////////////////////////////////////////////////////////||
 //                    Sezione Funzioni                   ||
@@ -79,7 +87,7 @@ export function showToolsCube(e){
     checkBoxIsPlayer.checked = cubeJson.isEvent;
     checkBoxIsPlayer.onchange = function(ev) {updateIsPlayerCube(ev, cubeJson)};
     tools.appendChild(checkBoxIsPlayer);
-    tools.appendChild(divToolsPlayer);
+    tools.appendChild(divToolsPlayers);
 
 
 }
