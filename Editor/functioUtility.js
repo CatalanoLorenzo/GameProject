@@ -154,7 +154,10 @@ export function genetateJSONMap() {
                                                 isPlayer:false,
                                                 listPlayers:[]
                                             },
-                                    listItem:[],
+                                    Item:{
+                                        isItem:false,
+                                        listItem:[]
+                                    },
                                     telepot:{
                                         isTelepot:false,
                                         coordinates:{}

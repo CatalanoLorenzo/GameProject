@@ -84,7 +84,7 @@ export function showToolsCube(e){
     tools.appendChild(checkBoxIsEvent);
     tools.appendChild(divToolsEvent);
     tools.appendChild(labelcheckBoxIsPlayer);
-    checkBoxIsPlayer.checked = cubeJson.isEvent;
+    checkBoxIsPlayer.checked = cubeJson.isPlayer;
     checkBoxIsPlayer.onchange = function(ev) {updateIsPlayerCube(ev, cubeJson)};
     tools.appendChild(checkBoxIsPlayer);
     tools.appendChild(divToolsPlayers);

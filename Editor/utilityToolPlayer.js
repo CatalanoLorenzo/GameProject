@@ -62,7 +62,7 @@ export function updateIsPlayerCube(ev, cubeJson){
  */
 export function renderPlayerSet(PlayerJson){
     divToolsPlayers.innerHTML = '';
-    selectPlayer.onchange = function() {updateIsPlayerCube()};
+    selectPlayer.onchange = function(e) {updateValueInputPlayer(e, PlayerJson)};
     const arrayOptionsEvent = Array.from(selectPlayer.options);
     arrayOptionsEvent.filter(option => option.value !== labelNewPlayer).forEach(option => selectPlayer.removeChild(option));
     divToolsPlayers.appendChild(labelSelectInputPlayer);
@@ -89,13 +89,13 @@ export function renderPlayerSet(PlayerJson){
 export function addPlayerCube(PlayerJson){
 console.log("Aggiunta Giocatore al Cubo");
     const selectPlayer = document.getElementById('select-player');
-    const inputNamePlayer = document.getElementById('input-player-name');
+    const inputNamePlayer = document.getElementById('input-Player-name');
     console.log("Valore Nome Giocatore : " + inputNamePlayer.value);
     console.log("Valore Select : " + selectPlayer.value);
     const newPlayer = {
         name: inputNamePlayer.value
     };
-    if (selectPlayer.value === labelnewPlayer) {
+    if (selectPlayer.value === labelNewPlayer) {
         PlayerJson.listPlayers [newPlayer.name] = newPlayer;
         const optionPlayer = document.createElement('option');
         optionPlayer.value = `${newPlayer.name}`;
@@ -126,7 +126,7 @@ export function removePlayerCube(playerJSON){
     const selectPlayer = document.getElementById('select-player');
     if (selectPlayer.value !== labelNewPlayer) {
         const namePlayer = selectPlayer.value;
-        delete playerJSON.listPlayer[namePlayer];
+        delete playerJSON.listPlayers[namePlayer];
         const optionPlayer = Array.from(selectPlayer.options).find(option => option.value === selectPlayer.value);
         if (optionPlayer) {
             selectPlayer.removeChild(optionPlayer);
@@ -141,7 +141,7 @@ export function removePlayerCube(playerJSON){
  */
 export function updateValueInputPlayer( ){
     const SelectPlayer = document.getElementById('select-player');
-    const inputNamePlayer = document.getElementById('input-player-name');
+    const inputNamePlayer = document.getElementById('input-Player-name');
     if (SelectPlayer.value !== labelNewPlayer) {
         inputNamePlayer.value = [SelectPlayer.value];
     }
