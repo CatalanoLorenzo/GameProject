@@ -129,7 +129,11 @@ export function hasActiveMultiSelection(){
     return document.querySelectorAll('#map .cube-selected').length > 1;
 }
 
-/**clearSelection rimuove l'evidenziazione dai cubi, svuota la selezione e chiude il pannello multi-selezione. */
+/**clearSelection rimuove l'evidenziazione dai cubi, svuota la selezione, chiude il pannello multi-selezione
+ * e riporta i suoi campi ai valori di default: altrimenti, alla prossima selezione, il pannello riapparirebbe
+ * mostrando ancora mesh/rotazione dell'ultima modifica fatta, anche se i nuovi cubi selezionati non hanno
+ * quei valori.
+ */
 export function clearSelection(){
     document.querySelectorAll('#map .cube-selected').forEach(c => c.classList.remove('cube-selected'));
     selectedIds.clear();
@@ -137,6 +141,11 @@ export function clearSelection(){
     if (tools.contains(divModalMultiSelect)) {
         tools.removeChild(divModalMultiSelect);
     }
+    selectMeshMulti.value = 'mash0000';
+    checkBoxIsBlockCubeMulti.checked = false;
+    inputRotationXMulti.value = 0;
+    inputRotationYMulti.value = 0;
+    inputRotationZMulti.value = 0;
 }
 
 function reapplyHighlight(){
