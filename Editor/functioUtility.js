@@ -85,9 +85,8 @@ export function createCube(x,y,z,nameMap){
     divCube.defaultValue = 0;
     divCube.classList.add("cube");
     let cubeJson = getCubeJsonSelectedById(divCube.id);
-    divCube.classList.add(`${cubeJson["mashCode"]}`);
-     if (cubeJson["mashCode"]!= undefined) {
-        divCube.classList.add(`${cubeJson["mashCode"]}`);  
+    if (cubeJson["mashCode"] != undefined) {
+        divCube.classList.add(`${cubeJson["mashCode"]}`);
     }
     if (cubeJson.isLooked !== undefined && cubeJson.isLooked ) {
         divCube.classList.add('looked');
@@ -102,7 +101,7 @@ export function createCube(x,y,z,nameMap){
  * 
  * @param {HTMLDocument} map 
  */
-export function generateMap(map,jsonMap){ 
+export function generateMap(map){
     map.innerHTML='';
     let y = getglobalY()+1;
     let x = getglobalX()+1;
@@ -196,7 +195,7 @@ export function downloadJSONMap(globalJSONMap) {
 
 export function loadMapModal(tools){
      let globalNameMap = getglobalNameMap();
-     inputUpLoadMap.onchange = () => {loadJsonMap(e)};
+     inputUpLoadMap.onchange = (e) => {loadJsonMap(e)};
      if (globalNameMap == []) {
          divModalUploadMap.appendChild(inputUpLoadMap);        
      }else{

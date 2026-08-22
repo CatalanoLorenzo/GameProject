@@ -103,12 +103,12 @@ console.log("Aggiunta Giocatore al Cubo");
         selectPlayer.appendChild(optionPlayer);
     }else{
         const namePlayer = selectPlayer.value;
-        delete PlayerJson.listPlayer[namePlayer];
+        delete PlayerJson.listPlayers[namePlayer];
         const optionPlayer = Array.from(selectPlayer.options).find(option => option.value === selectPlayer.value);
         if (optionPlayer) {
             selectPlayer.removeChild(optionPlayer);
         }
-        PlayerJson.listPlayer[newPlayer.name] = newPlayer;
+        PlayerJson.listPlayers[newPlayer.name] = newPlayer;
         const optionPlayerNew = document.createElement('option');
         optionPlayerNew.value = `${newPlayer.name}`;
         optionPlayerNew.text = `${newPlayer.name}`;

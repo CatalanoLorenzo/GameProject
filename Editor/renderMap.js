@@ -56,7 +56,7 @@ export function renderMap(map,tools){
     const jsonMap = genetateJSONMap(getglobalX(),getglobalY(),getglobalZ(),getglobalNameMap());
     // aggiorna la variabile globale esportata in functioUtility
     setGlobalJSONMap(jsonMap);
-    generateMap(map,jsonMap);
+    generateMap(map);
 
     tools.appendChild(bottonDownloadJsonMap);
     bottonDownloadJsonMap.onclick = function() {downloadJSONMap(getGlobalJSONMap())};

@@ -79,12 +79,12 @@ export function showToolsCube(e){
         divToolsTelepot.innerHTML = '';
     }
     tools.appendChild(labelcheckBoxIsEvent);
-    checkBoxIsEvent.checked = cubeJson.isEvent;
+    checkBoxIsEvent.checked = cubeJson.event.isEvent;
     checkBoxIsEvent.onchange = function(ev) {updateIsEventCube(ev, cubeJson)};
     tools.appendChild(checkBoxIsEvent);
     tools.appendChild(divToolsEvent);
     tools.appendChild(labelcheckBoxIsPlayer);
-    checkBoxIsPlayer.checked = cubeJson.isPlayer;
+    checkBoxIsPlayer.checked = cubeJson.player.isPlayer;
     checkBoxIsPlayer.onchange = function(ev) {updateIsPlayerCube(ev, cubeJson)};
     tools.appendChild(checkBoxIsPlayer);
     tools.appendChild(divToolsPlayers);

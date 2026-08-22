@@ -123,12 +123,12 @@ labelcheckBoxIsPlayer.htmlFor =  'input-upload-map';
 labelcheckBoxIsPlayer.innerText = labelIsPlayers;
 
 export const labelInputPlayerName = document.createElement('label');
-labelInputEventName.htmlFor = "input-player-name";
-labelInputEventName.innerText = labelNamePlayer;
+labelInputPlayerName.htmlFor = "input-player-name";
+labelInputPlayerName.innerText = labelNamePlayer;
 
 export const labelSelectInputPlayer = document.createElement('label');
-labelInputEventName.htmlFor = "select-Player";
-labelInputEventName.innerText = labelSelectPlayer;
+labelSelectInputPlayer.htmlFor = "select-Player";
+labelSelectInputPlayer.innerText = labelSelectPlayer;
 
 
 /////////////////////////////////////////////////////////||
@@ -380,8 +380,8 @@ divToolsPlayers.classList.add("d-flex", "flex-column");
 divToolsPlayers.id = "div-tools-players";
 
 export const  divModalUploadMap = document.createElement('div');
-divToolsEvent.classList.add("d-flex", "flex-column");
-divToolsEvent.id = "div-tools-upload-map";
+divModalUploadMap.classList.add("d-flex", "flex-column");
+divModalUploadMap.id = "div-tools-upload-map";
 
 export const divModalYesOrNo = document.createElement('div');
 divModalYesOrNo.classList.add("d-flex", "flex-column");

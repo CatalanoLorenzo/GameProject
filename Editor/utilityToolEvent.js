@@ -43,7 +43,7 @@ export function updateIsEventCube(ev, cubeJson){
     let globalJSONMap = getGlobalJSONMap();
     let layer = globalJSONMap['map'][`${cubeJson.z}`];
     if (layer && layer[cubeJson.IdCube]) {
-        layer[cubeJson.IdCube].isEvent = isEventCube;
+        layer[cubeJson.IdCube].event.isEvent = isEventCube;
         setGlobalJSONMap(globalJSONMap);
         if (isEventCube) {
             renderEventSet(cubeJson.event);
@@ -72,7 +72,7 @@ export function renderEventSet(eventJson){
     divToolsEvent.appendChild(labelSelectInputEvent);
     divToolsEvent.appendChild(selectEvent);
     if(Object.keys(eventJson.listEvent).length > 0){
-        Object.values(eventJson.listEvents).forEach(event => {
+        Object.values(eventJson.listEvent).forEach(event => {
             const optionEvent = document.createElement('option');
             optionEvent.value = `${event["name"]}`;
             optionEvent.text =  `${event["name"]}`;

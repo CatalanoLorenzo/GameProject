@@ -83,10 +83,16 @@ function createCubeJson(x, y, z, nameMap) {
         x: x,
         y: y,
         z: z,
-        mashCode: '0000',
+        mashCode: 'mash0000',
         isLooked: false,
-        listPlayer:[],
-        listItem:[],
+        player: {
+            isPlayer:false,
+            listPlayers:[]
+        },
+        Item:{
+            isItem:false,
+            listItem:[]
+        },
         telepot:{
             isTelepot:false,
             coordinates:{}
