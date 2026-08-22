@@ -118,6 +118,13 @@ function endSelection(){
     }
 }
 
+/**hasActiveMultiSelection indica se e' attualmente in corso una selezione multipla (pannello batch aperto).
+ * Usata per evitare che il pannello del singolo cubo si apra sopra quello multiplo.
+ */
+export function hasActiveMultiSelection(){
+    return selectedIds.size > 1;
+}
+
 /**clearSelection rimuove l'evidenziazione dai cubi, svuota la selezione e chiude il pannello multi-selezione. */
 export function clearSelection(){
     document.querySelectorAll('#map .cube-selected').forEach(c => c.classList.remove('cube-selected'));

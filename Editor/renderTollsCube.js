@@ -62,11 +62,17 @@ import  {
         }
 from './utilityToolRotation.js';
 
+import  {
+            hasActiveMultiSelection
+        }
+from './utilityToolMultiSelect.js';
+
 /////////////////////////////////////////////////////////||
 //                    Sezione Funzioni                   ||
 /////////////////////////////////////////////////////////||
 
 export function showToolsCube(e){
+    if (hasActiveMultiSelection()) return;
     console.log(`Informazioni del cubo ${e.target.id}: Valore: ${e.target.defaultValue}`);
     let cubeJson = getCubeJsonSelectedById(e.target.id);
     console.log(JSON.stringify(cubeJson));
