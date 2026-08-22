@@ -36,6 +36,11 @@ import  {
         }
 from './labelTextIta.js';
 
+import  {
+            closeSingleCubePanel
+        }
+from './renderTollsCube.js';
+
 /////////////////////////////////////////////////////////||
 //                    Sezione Stato                      ||
 /////////////////////////////////////////////////////////||
@@ -80,6 +85,7 @@ export function initMultiSelect(){
             const dy = e.clientY - dragStartClientY;
             if (Math.sqrt(dx * dx + dy * dy) < DRAG_THRESHOLD_PX) return;
             hasCrossedThreshold = true;
+            closeSingleCubePanel();
         }
         const cube = e.target.closest('.cube');
         if (!cube) return;

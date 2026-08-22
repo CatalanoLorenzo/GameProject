@@ -71,6 +71,26 @@ from './utilityToolMultiSelect.js';
 //                    Sezione Funzioni                   ||
 /////////////////////////////////////////////////////////||
 
+/**closeSingleCubePanel rimuove dal pannello strumenti tutti gli elementi mostrati da showToolsCube.
+ * Serve ad evitare che il pannello del singolo cubo resti visibile insieme a quello di selezione
+ * multipla quando si trascina per selezionare piu' cubi dopo aver gia' cliccato un cubo singolo.
+ */
+export function closeSingleCubePanel(){
+    const tools = document.getElementById('tools');
+    [
+        labelSelectInputMesh, selectMesh,
+        labelCheckBoxIsBlockCube, checkBoxIsBlockCube,
+        labelinputRotationX, inputRotationX,
+        labelinputRotationY, inputRotationY,
+        labelinputRotationZ, inputRotationZ,
+        labelcheckBoxIsTelepot, checkBoxIsTelepot, divToolsTelepot,
+        labelcheckBoxIsEvent, checkBoxIsEvent, divToolsEvent,
+        labelcheckBoxIsPlayer, checkBoxIsPlayer, divToolsPlayers
+    ].forEach(el => {
+        if (tools.contains(el)) tools.removeChild(el);
+    });
+}
+
 export function showToolsCube(e){
     if (hasActiveMultiSelection()) return;
     console.log(`Informazioni del cubo ${e.target.id}: Valore: ${e.target.defaultValue}`);
