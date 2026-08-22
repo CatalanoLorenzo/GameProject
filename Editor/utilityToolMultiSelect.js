@@ -40,9 +40,17 @@ from './labelTextIta.js';
 //                    Sezione Stato                      ||
 /////////////////////////////////////////////////////////||
 
+// Distanza minima (in pixel) da percorrere prima di considerare l'interazione un trascinamento
+// e non un semplice click: un click reale ha sempre un minimo tremore della mano, senza questa
+// soglia anche 1px di movimento verso la cella adiacente veniva interpretato come inizio selezione.
+const DRAG_THRESHOLD_PX = 6;
+
 let isDragging = false;
+let hasCrossedThreshold = false;
 let dragStartX = null;
 let dragStartY = null;
+let dragStartClientX = null;
+let dragStartClientY = null;
 let selectedIds = new Set();
 
 /////////////////////////////////////////////////////////||
@@ -58,9 +66,21 @@ export function initMultiSelect(){
         const cube = e.target.closest('.cube');
         if (!cube) return;
         e.preventDefault();
-        startSelection(parseInt(cube.dataset.x), parseInt(cube.dataset.y));
+        isDragging = true;
+        hasCrossedThreshold = false;
+        dragStartX = parseInt(cube.dataset.x);
+        dragStartY = parseInt(cube.dataset.y);
+        dragStartClientX = e.clientX;
+        dragStartClientY = e.clientY;
     });
-    map.addEventListener('mouseover', (e) => {
+    map.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        if (!hasCrossedThreshold) {
+            const dx = e.clientX - dragStartClientX;
+            const dy = e.clientY - dragStartClientY;
+            if (Math.sqrt(dx * dx + dy * dy) < DRAG_THRESHOLD_PX) return;
+            hasCrossedThreshold = true;
+        }
         const cube = e.target.closest('.cube');
         if (!cube) return;
         updateSelection(parseInt(cube.dataset.x), parseInt(cube.dataset.y));
@@ -68,14 +88,6 @@ export function initMultiSelect(){
     document.addEventListener('mouseup', () => {
         endSelection();
     });
-}
-
-function startSelection(x, y){
-    isDragging = true;
-    dragStartX = x;
-    dragStartY = y;
-    clearSelection();
-    updateSelection(x, y);
 }
 
 function updateSelection(x, y){
@@ -98,6 +110,7 @@ function updateSelection(x, y){
 function endSelection(){
     if (!isDragging) return;
     isDragging = false;
+    if (!hasCrossedThreshold) return;
     if (selectedIds.size > 1) {
         renderMultiSelectPanel();
     } else {
