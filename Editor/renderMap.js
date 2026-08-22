@@ -25,6 +25,7 @@ import  {
 
         }from "./globalVariables.js";
 import { updateMap } from "./updateMap.js";
+import { clearSelection } from "./utilityToolMultiSelect.js";
 
 /////////////
 //FUNZIONIU//
@@ -64,6 +65,7 @@ export function renderMap(map,tools){
     tools.appendChild(labelinputSelectZ);
     tools.appendChild(inputSelectZ);
     inputSelectZ.onchange = function(e) {
+        clearSelection();
         setGlobalSelectZ(parseInt(e.target.value));
         updateMap();
     }

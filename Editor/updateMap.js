@@ -18,6 +18,7 @@ import
         }
 from './globalVariables.js';
 import {createCube} from './functioUtility.js';
+import {clearSelection} from './utilityToolMultiSelect.js';
 
 
 /**updateGrid è una funzione che viene chiamata quando l'utente modifica uno degli input (righe, colonne, altezza, nome mappa) durante la generazione della mappa.
@@ -26,6 +27,7 @@ import {createCube} from './functioUtility.js';
  */
 export function updateGrid(e){
     if (getIsGeneratingMap()) {
+        clearSelection();
         let id = e.currentTarget.id;
         let value = e.currentTarget.value;
         console.log(`e.currentTarget.id : ${e.currentTarget.id}   e.target.value : ${e.target.value}`);

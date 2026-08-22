@@ -120,9 +120,13 @@ function endSelection(){
 
 /**hasActiveMultiSelection indica se e' attualmente in corso una selezione multipla (pannello batch aperto).
  * Usata per evitare che il pannello del singolo cubo si apra sopra quello multiplo.
+ * Si basa sui cubi effettivamente evidenziati nel DOM (non su selectedIds) perche' un cambio di layer
+ * o un ridimensionamento della mappa ricreano #map senza toccare selectedIds: usare quest'ultimo
+ * lascerebbe il pannello del singolo cubo bloccato anche quando in realta' non c'e' piu' nulla di
+ * selezionato sullo schermo.
  */
 export function hasActiveMultiSelection(){
-    return selectedIds.size > 1;
+    return document.querySelectorAll('#map .cube-selected').length > 1;
 }
 
 /**clearSelection rimuove l'evidenziazione dai cubi, svuota la selezione e chiude il pannello multi-selezione. */
