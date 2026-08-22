@@ -149,6 +149,11 @@ export function genetateJSONMap() {
                                     z:i,
                                     mashCode:'mash0000',
                                     isLooked:false,
+                                    rotation:{
+                                        x:0,
+                                        y:0,
+                                        z:0
+                                    },
                                     player: {
                                                 isPlayer:false,
                                                 listPlayers:[]

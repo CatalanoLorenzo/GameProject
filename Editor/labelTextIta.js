@@ -33,3 +33,6 @@ export const labelNewPlayer = "Nuovo Giocatore";
 export const labelIsPlayers = "Sono presenti dei Player: ";
 export const labelNamePlayer = 'Nome Giocatore';
 export const labelSelectPlayer = 'Seleziona il Player da assegnare al cubo: '
+export const labelRotationX = "Rotazione asse X: ";
+export const labelRotationY = "Rotazione asse Y: ";
+export const labelRotationZ = "Rotazione asse Z: ";

@@ -7,11 +7,17 @@ import  {
         }
 from './globalVariables.js';
 
-import  { 
+import  {
             labelSelectInputMesh,
             selectMesh,
             labelCheckBoxIsBlockCube,
             checkBoxIsBlockCube,
+            labelinputRotationX,
+            inputRotationX,
+            labelinputRotationY,
+            inputRotationY,
+            labelinputRotationZ,
+            inputRotationZ,
             labelcheckBoxIsTelepot,
             checkBoxIsTelepot,
             divToolsTelepot,
@@ -21,7 +27,7 @@ import  {
             labelcheckBoxIsPlayer,
             checkBoxIsPlayer,
             divToolsPlayers
-        } 
+        }
 from './tools.js';
 
 import  {
@@ -51,6 +57,11 @@ import  {
         }
 from './utilityToolPlayer.js';
 
+import  {
+            updateRotationCube
+        }
+from './utilityToolRotation.js';
+
 /////////////////////////////////////////////////////////||
 //                    Sezione Funzioni                   ||
 /////////////////////////////////////////////////////////||
@@ -68,6 +79,18 @@ export function showToolsCube(e){
     checkBoxIsBlockCube.checked = cubeJson.isLooked;
     checkBoxIsBlockCube.onchange = function(ev) {updateIsBlockCube(ev, cubeJson)};
     tools.appendChild(checkBoxIsBlockCube);
+    tools.appendChild(labelinputRotationX);
+    inputRotationX.value = cubeJson.rotation.x;
+    inputRotationX.onchange = function(ev) {updateRotationCube(ev, cubeJson, 'x')};
+    tools.appendChild(inputRotationX);
+    tools.appendChild(labelinputRotationY);
+    inputRotationY.value = cubeJson.rotation.y;
+    inputRotationY.onchange = function(ev) {updateRotationCube(ev, cubeJson, 'y')};
+    tools.appendChild(inputRotationY);
+    tools.appendChild(labelinputRotationZ);
+    inputRotationZ.value = cubeJson.rotation.z;
+    inputRotationZ.onchange = function(ev) {updateRotationCube(ev, cubeJson, 'z')};
+    tools.appendChild(inputRotationZ);
     tools.appendChild(labelcheckBoxIsTelepot);
     checkBoxIsTelepot.checked = cubeJson.telepot.isTelepot;
     checkBoxIsTelepot.onchange = function(ev) {updateIsTelepotCube(ev, cubeJson)};

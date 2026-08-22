@@ -37,8 +37,11 @@ import  {
             labelNewPlayer,
             labelIsPlayers,
             labelNamePlayer,
-            labelSelectPlayer
-        } 
+            labelSelectPlayer,
+            labelRotationX,
+            labelRotationY,
+            labelRotationZ
+        }
 from "./labelTextIta.js";
 
 import  { 
@@ -77,6 +80,18 @@ labelSelectInputMesh.innerText = labelSelectMesh;
 export const labelCheckBoxIsBlockCube = document.createElement('label');
 labelCheckBoxIsBlockCube.htmlFor = "checkbox-is-block-cube";
 labelCheckBoxIsBlockCube.innerText = labelIsBlockCube;
+
+export const labelinputRotationX = document.createElement('label');
+labelinputRotationX.htmlFor = "input-rotation-x";
+labelinputRotationX.innerText = labelRotationX;
+
+export const labelinputRotationY = document.createElement('label');
+labelinputRotationY.htmlFor = "input-rotation-y";
+labelinputRotationY.innerText = labelRotationY;
+
+export const labelinputRotationZ = document.createElement('label');
+labelinputRotationZ.htmlFor = "input-rotation-z";
+labelinputRotationZ.innerText = labelRotationZ;
 
 export const labelcheckBoxIsTelepot = document.createElement('label');
 labelcheckBoxIsTelepot.htmlFor = "checkbox-is-telepot";
@@ -215,7 +230,28 @@ checkBoxIsBlockCube.type = "checkbox";
 checkBoxIsBlockCube.id = "checkbox-is-block-cube";
 checkBoxIsBlockCube.checked = false;
 
-export const checkBoxIsTelepot = document.createElement('input');   
+export const inputRotationX = document.createElement('input');
+inputRotationX.classList.add("input-rotation-x");
+inputRotationX.type = "number";
+inputRotationX.id = "input-rotation-x";
+inputRotationX.value = 0;
+inputRotationX.defaultValue = 0;
+
+export const inputRotationY = document.createElement('input');
+inputRotationY.classList.add("input-rotation-y");
+inputRotationY.type = "number";
+inputRotationY.id = "input-rotation-y";
+inputRotationY.value = 0;
+inputRotationY.defaultValue = 0;
+
+export const inputRotationZ = document.createElement('input');
+inputRotationZ.classList.add("input-rotation-z");
+inputRotationZ.type = "number";
+inputRotationZ.id = "input-rotation-z";
+inputRotationZ.value = 0;
+inputRotationZ.defaultValue = 0;
+
+export const checkBoxIsTelepot = document.createElement('input');
 checkBoxIsTelepot.classList.add("checkbox-is-telepot");
 checkBoxIsTelepot.type = "checkbox";
 checkBoxIsTelepot.id = "checkbox-is-telepot";
