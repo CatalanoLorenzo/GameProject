@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { loadMap } from './mapLoader.js';
 
 const canvas = document.getElementById('scene');
 
@@ -24,13 +25,7 @@ scene.add(directionalLight);
 
 scene.add(new THREE.GridHelper(20, 20));
 
-// Cubo di riferimento, verra sostituito dai cubi generati dalla mappa dell'Editor
-const placeholderCube = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshStandardMaterial({ color: 0x4caf50 })
-);
-placeholderCube.position.y = 0.5;
-scene.add(placeholderCube);
+scene.add(await loadMap('test'));
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
