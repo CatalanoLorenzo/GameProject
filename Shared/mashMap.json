@@ -5,7 +5,8 @@
     },
     "mash0001": {
         "name": "Erba",
-        "type": "Erba"
+        "type": "Erba",
+        "model": "grass-block-placeholder.glb"
     },
     "mash0002": {
         "name": "Strada",
