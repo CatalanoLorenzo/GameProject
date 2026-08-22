@@ -86,6 +86,7 @@ export function initMultiSelect(){
             if (Math.sqrt(dx * dx + dy * dy) < DRAG_THRESHOLD_PX) return;
             hasCrossedThreshold = true;
             closeSingleCubePanel();
+            resetMultiSelectFields();
         }
         const cube = e.target.closest('.cube');
         if (!cube) return;
@@ -135,10 +136,22 @@ export function hasActiveMultiSelection(){
     return document.querySelectorAll('#map .cube-selected').length > 1;
 }
 
+/**resetMultiSelectFields riporta i campi del pannello batch ai valori di default. Va richiamata sia
+ * alla chiusura della selezione, sia all'inizio di una NUOVA selezione fatta senza chiudere prima quella
+ * precedente: altrimenti il pannello riapparirebbe ancora con mesh/rotazione dell'ultima modifica fatta e,
+ * se il valore desiderato per il nuovo gruppo e' lo stesso gia' mostrato, il <select> non genera nessun
+ * evento "change" quando lo riselezioni, quindi la modifica non verrebbe mai applicata.
+ */
+function resetMultiSelectFields(){
+    selectMeshMulti.value = 'mash0000';
+    checkBoxIsBlockCubeMulti.checked = false;
+    inputRotationXMulti.value = 0;
+    inputRotationYMulti.value = 0;
+    inputRotationZMulti.value = 0;
+}
+
 /**clearSelection rimuove l'evidenziazione dai cubi, svuota la selezione, chiude il pannello multi-selezione
- * e riporta i suoi campi ai valori di default: altrimenti, alla prossima selezione, il pannello riapparirebbe
- * mostrando ancora mesh/rotazione dell'ultima modifica fatta, anche se i nuovi cubi selezionati non hanno
- * quei valori.
+ * e riporta i suoi campi ai valori di default.
  */
 export function clearSelection(){
     document.querySelectorAll('#map .cube-selected').forEach(c => c.classList.remove('cube-selected'));
@@ -147,11 +160,7 @@ export function clearSelection(){
     if (tools.contains(divModalMultiSelect)) {
         tools.removeChild(divModalMultiSelect);
     }
-    selectMeshMulti.value = 'mash0000';
-    checkBoxIsBlockCubeMulti.checked = false;
-    inputRotationXMulti.value = 0;
-    inputRotationYMulti.value = 0;
-    inputRotationZMulti.value = 0;
+    resetMultiSelectFields();
 }
 
 function reapplyHighlight(){
