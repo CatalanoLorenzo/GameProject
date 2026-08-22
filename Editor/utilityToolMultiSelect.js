@@ -1,0 +1,193 @@
+/////////////////////////////////////////////////////////||
+//                     Sezione Import                    ||
+/////////////////////////////////////////////////////////||
+
+import  {
+            getGlobalJSONMap,
+            setGlobalJSONMap,
+            getGlobalSelectZ
+        }
+from './globalVariables.js';
+
+import  {
+            updateMap
+        }
+from './updateMap.js';
+
+import  {
+            divModalMultiSelect,
+            labelMultiSelectCount,
+            labelSelectMeshMulti,
+            selectMeshMulti,
+            labelCheckBoxIsBlockCubeMulti,
+            checkBoxIsBlockCubeMulti,
+            labelinputRotationXMulti,
+            inputRotationXMulti,
+            labelinputRotationYMulti,
+            inputRotationYMulti,
+            labelinputRotationZMulti,
+            inputRotationZMulti,
+            bottonChiudiMultiSelect
+        }
+from './tools.js';
+
+import  {
+            labelCubiSelezionati
+        }
+from './labelTextIta.js';
+
+/////////////////////////////////////////////////////////||
+//                    Sezione Stato                      ||
+/////////////////////////////////////////////////////////||
+
+let isDragging = false;
+let dragStartX = null;
+let dragStartY = null;
+let selectedIds = new Set();
+
+/////////////////////////////////////////////////////////||
+//                    Sezione Funzioni                   ||
+/////////////////////////////////////////////////////////||
+/**initMultiSelect collega, una sola volta, gli eventi del mouse sul div "map" (delega di eventi,
+ * cosi funziona anche sui cubi ricreati ad ogni updateMap) e su document per intercettare il rilascio
+ * del tasto anche fuori dalla griglia.
+ */
+export function initMultiSelect(){
+    const map = document.getElementById('map');
+    map.addEventListener('mousedown', (e) => {
+        const cube = e.target.closest('.cube');
+        if (!cube) return;
+        e.preventDefault();
+        startSelection(parseInt(cube.dataset.x), parseInt(cube.dataset.y));
+    });
+    map.addEventListener('mouseover', (e) => {
+        const cube = e.target.closest('.cube');
+        if (!cube) return;
+        updateSelection(parseInt(cube.dataset.x), parseInt(cube.dataset.y));
+    });
+    document.addEventListener('mouseup', () => {
+        endSelection();
+    });
+}
+
+function startSelection(x, y){
+    isDragging = true;
+    dragStartX = x;
+    dragStartY = y;
+    clearSelection();
+    updateSelection(x, y);
+}
+
+function updateSelection(x, y){
+    if (!isDragging) return;
+    const minX = Math.min(dragStartX, x);
+    const maxX = Math.max(dragStartX, x);
+    const minY = Math.min(dragStartY, y);
+    const maxY = Math.max(dragStartY, y);
+
+    selectedIds = new Set();
+    document.querySelectorAll('#map .cube').forEach(cube => {
+        const cx = parseInt(cube.dataset.x);
+        const cy = parseInt(cube.dataset.y);
+        const isInside = cx >= minX && cx <= maxX && cy >= minY && cy <= maxY;
+        cube.classList.toggle('cube-selected', isInside);
+        if (isInside) selectedIds.add(cube.id);
+    });
+}
+
+function endSelection(){
+    if (!isDragging) return;
+    isDragging = false;
+    if (selectedIds.size > 1) {
+        renderMultiSelectPanel();
+    } else {
+        clearSelection();
+    }
+}
+
+/**clearSelection rimuove l'evidenziazione dai cubi, svuota la selezione e chiude il pannello multi-selezione. */
+export function clearSelection(){
+    document.querySelectorAll('#map .cube-selected').forEach(c => c.classList.remove('cube-selected'));
+    selectedIds.clear();
+    const tools = document.getElementById('tools');
+    if (tools.contains(divModalMultiSelect)) {
+        tools.removeChild(divModalMultiSelect);
+    }
+}
+
+function reapplyHighlight(){
+    document.querySelectorAll('#map .cube').forEach(cube => {
+        cube.classList.toggle('cube-selected', selectedIds.has(cube.id));
+    });
+}
+
+/**applyToSelection applica una modifica a tutti i cubi selezionati sul layer corrente, aggiorna il JSON globale,
+ * ridisegna la mappa e ripristina l'evidenziazione (che updateMap altrimenti cancellerebbe).
+ *
+ * @param {Function} mutator - funzione che riceve il singolo cubo JSON e lo modifica
+ */
+function applyToSelection(mutator){
+    const globalJSONMap = getGlobalJSONMap();
+    const layer = globalJSONMap['map'][`${getGlobalSelectZ()}`];
+    selectedIds.forEach(id => {
+        if (layer && layer[id]) {
+            mutator(layer[id]);
+        }
+    });
+    setGlobalJSONMap(globalJSONMap);
+    updateMap();
+    reapplyHighlight();
+}
+
+/**renderMultiSelectPanel mostra nel pannello strumenti i controlli per applicare in blocco mesh,
+ * calpestabilita e rotazione a tutti i cubi attualmente selezionati.
+ */
+function renderMultiSelectPanel(){
+    divModalMultiSelect.innerHTML = '';
+
+    labelMultiSelectCount.innerText = `${labelCubiSelezionati}${selectedIds.size}`;
+    divModalMultiSelect.appendChild(labelMultiSelectCount);
+
+    divModalMultiSelect.appendChild(labelSelectMeshMulti);
+    selectMeshMulti.onchange = (ev) => {
+        const newMashCode = ev.target.value;
+        applyToSelection(cube => { cube.mashCode = newMashCode; });
+    };
+    divModalMultiSelect.appendChild(selectMeshMulti);
+
+    divModalMultiSelect.appendChild(labelCheckBoxIsBlockCubeMulti);
+    checkBoxIsBlockCubeMulti.onchange = (ev) => {
+        const isBlockCube = ev.target.checked;
+        applyToSelection(cube => { cube.isLooked = isBlockCube; });
+    };
+    divModalMultiSelect.appendChild(checkBoxIsBlockCubeMulti);
+
+    divModalMultiSelect.appendChild(labelinputRotationXMulti);
+    inputRotationXMulti.onchange = (ev) => {
+        const value = parseFloat(ev.target.value) || 0;
+        applyToSelection(cube => { cube.rotation.x = value; });
+    };
+    divModalMultiSelect.appendChild(inputRotationXMulti);
+
+    divModalMultiSelect.appendChild(labelinputRotationYMulti);
+    inputRotationYMulti.onchange = (ev) => {
+        const value = parseFloat(ev.target.value) || 0;
+        applyToSelection(cube => { cube.rotation.y = value; });
+    };
+    divModalMultiSelect.appendChild(inputRotationYMulti);
+
+    divModalMultiSelect.appendChild(labelinputRotationZMulti);
+    inputRotationZMulti.onchange = (ev) => {
+        const value = parseFloat(ev.target.value) || 0;
+        applyToSelection(cube => { cube.rotation.z = value; });
+    };
+    divModalMultiSelect.appendChild(inputRotationZMulti);
+
+    bottonChiudiMultiSelect.onclick = () => clearSelection();
+    divModalMultiSelect.appendChild(bottonChiudiMultiSelect);
+
+    const tools = document.getElementById('tools');
+    if (!tools.contains(divModalMultiSelect)) {
+        tools.appendChild(divModalMultiSelect);
+    }
+}

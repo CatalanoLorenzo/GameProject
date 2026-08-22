@@ -82,6 +82,8 @@ export function mountElementOnTools(tools){
 export function createCube(x,y,z,nameMap){ 
     const divCube = document.createElement('div');
     divCube.id = `x${x}y${y}z${z}-L${z}-${nameMap}`;
+    divCube.dataset.x = x;
+    divCube.dataset.y = y;
     divCube.defaultValue = 0;
     divCube.classList.add("cube");
     let cubeJson = getCubeJsonSelectedById(divCube.id);

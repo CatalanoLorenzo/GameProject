@@ -36,3 +36,5 @@ export const labelSelectPlayer = 'Seleziona il Player da assegnare al cubo: '
 export const labelRotationX = "Rotazione asse X: ";
 export const labelRotationY = "Rotazione asse Y: ";
 export const labelRotationZ = "Rotazione asse Z: ";
+export const labelCubiSelezionati = "Cubi selezionati: ";
+export const labelChiudiSelezione = "Chiudi selezione";

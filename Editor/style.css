@@ -25,6 +25,11 @@
     display: grid;
     grid-auto-rows: var(--heightCube);
     gap: 0;
+    user-select: none;
+}
+.cube-selected{
+    outline: 3px solid orange;
+    outline-offset: -3px;
 }
 
 .cube{

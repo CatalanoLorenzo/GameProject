@@ -40,7 +40,9 @@ import  {
             labelSelectPlayer,
             labelRotationX,
             labelRotationY,
-            labelRotationZ
+            labelRotationZ,
+            labelCubiSelezionati,
+            labelChiudiSelezione
         }
 from "./labelTextIta.js";
 
@@ -432,3 +434,75 @@ divModalYesOrNo.id = 'div-tools-modal-yes-or-no';
 ////////////////////////////////////////////////////////////||
 export const pYesOrNoUploadMap = document.createElement('p');
 pYesOrNoUploadMap.innerHTML = labelYesOrNoUpladMap;
+
+////////////////////////////////////////////////////////////||
+//           Sezione Selezione Multipla Cubi                ||
+////////////////////////////////////////////////////////////||
+
+export const divModalMultiSelect = document.createElement('div');
+divModalMultiSelect.classList.add("d-flex", "flex-column");
+divModalMultiSelect.id = "div-modal-multi-select";
+
+export const labelMultiSelectCount = document.createElement('label');
+labelMultiSelectCount.id = "label-multi-select-count";
+
+export const labelSelectMeshMulti = document.createElement('label');
+labelSelectMeshMulti.htmlFor = "select-mesh-multi";
+labelSelectMeshMulti.innerText = labelSelectMesh;
+
+export const selectMeshMulti = document.createElement('select');
+selectMeshMulti.classList.add("select-mesh-multi");
+selectMeshMulti.id = "select-mesh-multi";
+for (const meshKey in jsonMash) {
+    const optionMulti = document.createElement('option');
+    optionMulti.value = meshKey;
+    optionMulti.text = jsonMash[meshKey]["name"];
+    selectMeshMulti.appendChild(optionMulti);
+}
+
+export const labelCheckBoxIsBlockCubeMulti = document.createElement('label');
+labelCheckBoxIsBlockCubeMulti.htmlFor = "checkbox-is-block-cube-multi";
+labelCheckBoxIsBlockCubeMulti.innerText = labelIsBlockCube;
+
+export const checkBoxIsBlockCubeMulti = document.createElement('input');
+checkBoxIsBlockCubeMulti.classList.add("checkbox-is-block-cube-multi");
+checkBoxIsBlockCubeMulti.type = "checkbox";
+checkBoxIsBlockCubeMulti.id = "checkbox-is-block-cube-multi";
+
+export const labelinputRotationXMulti = document.createElement('label');
+labelinputRotationXMulti.htmlFor = "input-rotation-x-multi";
+labelinputRotationXMulti.innerText = labelRotationX;
+
+export const inputRotationXMulti = document.createElement('input');
+inputRotationXMulti.classList.add("input-rotation-x-multi");
+inputRotationXMulti.type = "number";
+inputRotationXMulti.id = "input-rotation-x-multi";
+inputRotationXMulti.value = 0;
+inputRotationXMulti.defaultValue = 0;
+
+export const labelinputRotationYMulti = document.createElement('label');
+labelinputRotationYMulti.htmlFor = "input-rotation-y-multi";
+labelinputRotationYMulti.innerText = labelRotationY;
+
+export const inputRotationYMulti = document.createElement('input');
+inputRotationYMulti.classList.add("input-rotation-y-multi");
+inputRotationYMulti.type = "number";
+inputRotationYMulti.id = "input-rotation-y-multi";
+inputRotationYMulti.value = 0;
+inputRotationYMulti.defaultValue = 0;
+
+export const labelinputRotationZMulti = document.createElement('label');
+labelinputRotationZMulti.htmlFor = "input-rotation-z-multi";
+labelinputRotationZMulti.innerText = labelRotationZ;
+
+export const inputRotationZMulti = document.createElement('input');
+inputRotationZMulti.classList.add("input-rotation-z-multi");
+inputRotationZMulti.type = "number";
+inputRotationZMulti.id = "input-rotation-z-multi";
+inputRotationZMulti.value = 0;
+inputRotationZMulti.defaultValue = 0;
+
+export const bottonChiudiMultiSelect = document.createElement('button');
+bottonChiudiMultiSelect.classList.add("botton-chiudi-multi-select");
+bottonChiudiMultiSelect.type = "button";
+bottonChiudiMultiSelect.innerText = labelChiudiSelezione;
